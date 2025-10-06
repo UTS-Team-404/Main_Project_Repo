@@ -1,0 +1,12 @@
+
+===== Initialization started at Sun Oct  5 10:49:18 PM EDT 2025 =====
+
+[+] Running with root privileges.
+
+[*] Updating package lists...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Hit:1 https://packages.microsoft.com/repos/code stable InRelease
+Hit:2 http://http.kali.org/kali kali-rolling InRelease
+Reading package lists...

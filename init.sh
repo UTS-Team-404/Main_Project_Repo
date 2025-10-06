@@ -4,6 +4,7 @@
 # ========================================
 # Checks:
 #   - Python 3 presence and version
+#   - checks and creates venv 
 #   - Python dependencies (requirements.txt)
 #   - MySQL installation, service status, and DB setup
 #   - Network interfaces & monitor mode status
@@ -14,9 +15,21 @@
 
 VENV_DIR=".venv"
 LOGFILE="./initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
-PYTHON_SCRIPT="main.py"       # <-- change this to your script
+PYTHON_SCRIPT="./app/app.py"       # <-- change this to your script
 SQL_FILE="setup.sql"          # <-- change this to your SQL setup file
 REQUIREMENTS_FILE="requirements.txt"
+
+APT_PACKAGES=(
+    python3-gi
+    python3-gi-cairo
+    gir1.2-gtk-3.0
+    libgirepository1.0-dev
+    libcairo2-dev
+    pkg-config
+    python3-dev
+    libgtk-3-dev
+    build-essential
+)
 
 # Create or clear log
 : > "$LOGFILE"
@@ -35,6 +48,16 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 log "[+] Running with root privileges."
+
+
+log "\n[*] Installing required system packages..."
+apt install -y "${APT_PACKAGES[@]}" 2>&1 | tee -a "$LOGFILE"
+if [ $? -eq 0 ]; then
+    log "[+] System packages installed successfully."
+else
+    log "[X] Some packages failed to install. Check log for details."
+fi
+
 
 # --- Find base user (who invoked sudo) ---
 BASE_USER=${SUDO_USER:-$USER}
@@ -143,12 +166,14 @@ fi
 log "\n[*] Active Wi-Fi connections:"
 nmcli dev wifi list 2>/dev/null | tee -a "$LOGFILE"
 
+
+log "\n===== Initialization completed at $(date) =====\n"
+
 # --- Run the Python script ---
 if [ -f "$PYTHON_SCRIPT" ]; then
     log "\n[*] Running Python script: $PYTHON_SCRIPT"
-    python3 "$PYTHON_SCRIPT" 2>&1 | tee -a "$LOGFILE"
+    ./.venv/bin/python3 "$PYTHON_SCRIPT" 2>&1
 else
     log "[!] Python script '$PYTHON_SCRIPT' not found. Skipping execution."
 fi
 
-log "\n===== Initialization completed at $(date) =====\n"
