@@ -1,0 +1,119 @@
+
+===== Initialization started at Sun Oct  5 11:22:30 PM EDT 2025 =====
+
+[+] Running with root privileges.
+
+[*] Installing required system packages...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+python3-gi is already the newest version (3.50.0-7).
+python3-gi-cairo is already the newest version (3.50.0-7).
+gir1.2-gtk-3.0 is already the newest version (3.24.50-2).
+libgirepository1.0-dev is already the newest version (1.86.0-5).
+libcairo2-dev is already the newest version (1.18.4-1+b1).
+pkg-config is already the newest version (1.8.1-4).
+python3-dev is already the newest version (3.13.5-1).
+libgtk-3-dev is already the newest version (3.24.50-2).
+build-essential is already the newest version (12.12).
+The following package was automatically installed and is no longer required:
+  libjxl0.10
+Use 'sudo apt autoremove' to remove it.
+
+Upgrading:
+  libavif16                   libsoup-3.0-0        libyuv0
+  libgcrypt20                 libsoup-3.0-common   sqlite3
+  libjavascriptcoregtk-4.1-0  libsqlite3-0
+  libnghttp2-14               libwebkit2gtk-4.1-0
+
+Installing:
+  gir1.2-webkit2-4.1  libwebkit2gtk-4.1-dev
+
+Installing dependencies:
+  gir1.2-javascriptcoregtk-4.1  libnghttp2-dev  libsoup-3.0-dev
+  gir1.2-soup-3.0               libpsl-dev      libsqlite3-dev
+  libjavascriptcoregtk-4.1-dev  librav1e0.8
+
+Suggested packages:
+  libnghttp2-doc  libsoup-3.0-doc  sqlite3-doc
+
+Summary:
+  Upgrading: 10, Installing: 10, Removing: 0, Not Upgrading: 1122
+  Download size: 36.1 MB
+  Space needed: 26.0 MB / 25.6 GB available
+
+Get:1 http://mirror.2degrees.nz/kali kali-rolling/main amd64 sqlite3 amd64 3.46.1-8 [393 kB]
+Get:3 http://kali.download/kali kali-rolling/main amd64 librav1e0.8 amd64 0.8.1-2 [979 kB]
+Get:9 http://mirror.2degrees.nz/kali kali-rolling/main amd64 libsoup-3.0-0 amd64 3.6.5-4 [281 kB]
+Get:2 http://wlglam.fsmg.org.nz/kali kali-rolling/main amd64 libsqlite3-0 amd64 3.46.1-8 [968 kB]
+Get:4 http://kali.download/kali kali-rolling/main amd64 libyuv0 amd64 0.0.1919.20250919-1 [175 kB]
+Get:5 http://http.kali.org/kali kali-rolling/main amd64 libavif16 amd64 1.3.0-1+b1 [137 kB]
+Get:7 http://kali.download/kali kali-rolling/main amd64 libsoup-3.0-common all 3.6.5-4 [65.7 kB]
+Get:8 http://http.kali.org/kali kali-rolling/main amd64 libnghttp2-14 amd64 1.64.0-1.1+b1 [76.2 kB]
+Get:10 http://kali.download/kali kali-rolling/main amd64 libwebkit2gtk-4.1-0 amd64 2.50.0-2 [22.9 MB]
+Get:16 http://http.kali.org/kali kali-rolling/main amd64 libnghttp2-dev amd64 1.64.0-1.1+b1 [117 kB]
+Get:20 http://mirror.2degrees.nz/kali kali-rolling/main amd64 libwebkit2gtk-4.1-dev amd64 2.50.0-2 [310 kB]
+Get:11 http://hlzmel.fsmg.org.nz/kali kali-rolling/main amd64 libjavascriptcoregtk-4.1-0 amd64 2.50.0-2 [7,273 kB]
+Get:6 http://wlglam.fsmg.org.nz/kali kali-rolling/main amd64 libgcrypt20 amd64 1.11.2-2 [865 kB]
+Get:12 http://wlglam.fsmg.org.nz/kali kali-rolling/main amd64 gir1.2-javascriptcoregtk-4.1 amd64 2.50.0-2 [50.8 kB]
+Get:17 http://http.kali.org/kali kali-rolling/main amd64 libpsl-dev amd64 0.21.2-1.1+b1 [77.6 kB]
+Get:18 http://wlglam.fsmg.org.nz/kali kali-rolling/main amd64 libsqlite3-dev amd64 3.46.1-8 [1,172 kB]
+Get:13 http://kali.download/kali kali-rolling/main amd64 gir1.2-soup-3.0 amd64 3.6.5-4 [29.8 kB]
+Get:14 http://kali.download/kali kali-rolling/main amd64 gir1.2-webkit2-4.1 amd64 2.50.0-2 [107 kB]
+Get:15 http://kali.download/kali kali-rolling/main amd64 libjavascriptcoregtk-4.1-dev amd64 2.50.0-2 [82.4 kB]
+Get:19 http://kali.download/kali kali-rolling/main amd64 libsoup-3.0-dev amd64 3.6.5-4 [115 kB]
+Fetched 36.1 MB in 6s (6,261 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 426374 files and directories currently installed.)
+Preparing to unpack .../sqlite3_3.46.1-8_amd64.deb ...
+Unpacking sqlite3 (3.46.1-8) over (3.46.1-4) ...
+Preparing to unpack .../libsqlite3-0_3.46.1-8_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.46.1-8) over (3.46.1-4) ...
+Setting up libsqlite3-0:amd64 (3.46.1-8) ...
+Selecting previously unselected package librav1e0.8:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 426374 files and directories currently installed.)
+Preparing to unpack .../00-librav1e0.8_0.8.1-2_amd64.deb ...
+Unpacking librav1e0.8:amd64 (0.8.1-2) ...
+Preparing to unpack .../01-libyuv0_0.0.1919.20250919-1_amd64.deb ...
+Unpacking libyuv0:amd64 (0.0.1919.20250919-1) over (0.0.1904.20250204-1) ...
+Preparing to unpack .../02-libavif16_1.3.0-1+b1_amd64.deb ...
+Unpacking libavif16:amd64 (1.3.0-1+b1) over (1.2.1-1.2) ...
+Preparing to unpack .../03-libgcrypt20_1.11.2-2_amd64.deb ...
+Unpacking libgcrypt20:amd64 (1.11.2-2) over (1.11.0-7) ...
+Preparing to unpack .../04-libsoup-3.0-common_3.6.5-4_all.deb ...
+Unpacking libsoup-3.0-common (3.6.5-4) over (3.6.5-1) ...
+Preparing to unpack .../05-libnghttp2-14_1.64.0-1.1+b1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.64.0-1.1+b1) over (1.64.0-1.1) ...
+Preparing to unpack .../06-libsoup-3.0-0_3.6.5-4_amd64.deb ...
+Unpacking libsoup-3.0-0:amd64 (3.6.5-4) over (3.6.5-1) ...
+Preparing to unpack .../07-libwebkit2gtk-4.1-0_2.50.0-2_amd64.deb ...
+Unpacking libwebkit2gtk-4.1-0:amd64 (2.50.0-2) over (2.46.6-1) ...
+Preparing to unpack .../08-libjavascriptcoregtk-4.1-0_2.50.0-2_amd64.deb ...
+Unpacking libjavascriptcoregtk-4.1-0:amd64 (2.50.0-2) over (2.46.6-1) ...
+Selecting previously unselected package gir1.2-javascriptcoregtk-4.1:amd64.
+Preparing to unpack .../09-gir1.2-javascriptcoregtk-4.1_2.50.0-2_amd64.deb ...
+Unpacking gir1.2-javascriptcoregtk-4.1:amd64 (2.50.0-2) ...
+Selecting previously unselected package gir1.2-soup-3.0:amd64.
+Preparing to unpack .../10-gir1.2-soup-3.0_3.6.5-4_amd64.deb ...
+Unpacking gir1.2-soup-3.0:amd64 (3.6.5-4) ...
+Selecting previously unselected package gir1.2-webkit2-4.1:amd64.
+Preparing to unpack .../11-gir1.2-webkit2-4.1_2.50.0-2_amd64.deb ...
+Unpacking gir1.2-webkit2-4.1:amd64 (2.50.0-2) ...
+Selecting previously unselected package libjavascriptcoregtk-4.1-dev:amd64.
+Preparing to unpack .../12-libjavascriptcoregtk-4.1-dev_2.50.0-2_amd64.deb ...
+Unpacking libjavascriptcoregtk-4.1-dev:amd64 (2.50.0-2) ...
+Selecting previously unselected package libnghttp2-dev:amd64.
+Preparing to unpack .../13-libnghttp2-dev_1.64.0-1.1+b1_amd64.deb ...
+Unpacking libnghttp2-dev:amd64 (1.64.0-1.1+b1) ...
+Selecting previously unselected package libpsl-dev:amd64.
+Preparing to unpack .../14-libpsl-dev_0.21.2-1.1+b1_amd64.deb ...
+Unpacking libpsl-dev:amd64 (0.21.2-1.1+b1) ...
+Selecting previously unselected package libsqlite3-dev:amd64.
+Preparing to unpack .../15-libsqlite3-dev_3.46.1-8_amd64.deb ...
+Unpacking libsqlite3-dev:amd64 (3.46.1-8) ...
+Selecting previously unselected package libsoup-3.0-dev:amd64.
+Preparing to unpack .../16-libsoup-3.0-dev_3.6.5-4_amd64.deb ...
+Unpacking libsoup-3.0-dev:amd64 (3.6.5-4) ...
+Selecting previously unselected package libwebkit2gtk-4.1-dev.

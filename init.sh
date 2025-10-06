@@ -29,6 +29,8 @@ APT_PACKAGES=(
     python3-dev
     libgtk-3-dev
     build-essential
+    libwebkit2gtk-4.1-dev
+    gir1.2-webkit2-4.1
 )
 
 # Create or clear log
@@ -172,7 +174,7 @@ log "\n===== Initialization completed at $(date) =====\n"
 # --- Run the Python script ---
 if [ -f "$PYTHON_SCRIPT" ]; then
     log "\n[*] Running Python script: $PYTHON_SCRIPT"
-    ./.venv/bin/python3 "$PYTHON_SCRIPT" 2>&1
+    sudo ./.venv/bin/python3 "$PYTHON_SCRIPT" --no-sandbox 2>&1
 else
     log "[!] Python script '$PYTHON_SCRIPT' not found. Skipping execution."
 fi

@@ -1,0 +1,103 @@
+
+===== Initialization started at Sun Oct  5 11:22:43 PM EDT 2025 =====
+
+[+] Running with root privileges.
+
+[*] Installing required system packages...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+python3-gi is already the newest version (3.50.0-7).
+python3-gi-cairo is already the newest version (3.50.0-7).
+gir1.2-gtk-3.0 is already the newest version (3.24.50-2).
+libgirepository1.0-dev is already the newest version (1.86.0-5).
+libcairo2-dev is already the newest version (1.18.4-1+b1).
+pkg-config is already the newest version (1.8.1-4).
+python3-dev is already the newest version (3.13.5-1).
+libgtk-3-dev is already the newest version (3.24.50-2).
+build-essential is already the newest version (12.12).
+libwebkit2gtk-4.1-dev is already the newest version (2.50.0-2).
+gir1.2-webkit2-4.1 is already the newest version (2.50.0-2).
+The following package was automatically installed and is no longer required:
+  libjxl0.10
+Use 'sudo apt autoremove' to remove it.
+
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 1122
+[+] System packages installed successfully.
+[*] Script executed by: kali
+[+] Python found: Python 3.13.7
+[+] Python version >= 3.8 OK
+[+] Virtual environment already exists (.venv)
+[*] Activating virtual environment...
+[*] Upgrading pip inside venv...
+Requirement already satisfied: pip in ./.venv/lib/python3.13/site-packages (25.2)
+[*] Installing Python dependencies from requirements.txt ...
+Requirement already satisfied: scapy in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 1)) (2.6.1)
+Requirement already satisfied: mysql-connector-python in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 2)) (9.4.0)
+Requirement already satisfied: pandas in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 3)) (2.3.3)
+Requirement already satisfied: reportlab in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 4)) (4.4.4)
+Requirement already satisfied: folium in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 6)) (0.20.0)
+Requirement already satisfied: pywebview[GTK] in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 5)) (6.0)
+Requirement already satisfied: numpy>=1.26.0 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2.3.3)
+Requirement already satisfied: python-dateutil>=2.8.2 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: pillow>=9.0.0 in ./.venv/lib/python3.13/site-packages (from reportlab->-r requirements.txt (line 4)) (11.3.0)
+Requirement already satisfied: charset-normalizer in ./.venv/lib/python3.13/site-packages (from reportlab->-r requirements.txt (line 4)) (3.4.3)
+Requirement already satisfied: proxy_tools in ./.venv/lib/python3.13/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (0.1.0)
+Requirement already satisfied: bottle in ./.venv/lib/python3.13/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (0.13.4)
+Requirement already satisfied: typing_extensions in ./.venv/lib/python3.13/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (4.15.0)
+Requirement already satisfied: PyGObject==3.50.0 in ./.venv/lib/python3.13/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (3.50.0)
+Requirement already satisfied: PyGObject-stubs in ./.venv/lib/python3.13/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (2.13.0)
+Requirement already satisfied: pycairo>=1.16 in ./.venv/lib/python3.13/site-packages (from PyGObject==3.50.0->pywebview[GTK]->-r requirements.txt (line 5)) (1.28.0)
+Requirement already satisfied: branca>=0.6.0 in ./.venv/lib/python3.13/site-packages (from folium->-r requirements.txt (line 6)) (0.8.1)
+Requirement already satisfied: jinja2>=2.9 in ./.venv/lib/python3.13/site-packages (from folium->-r requirements.txt (line 6)) (3.1.6)
+Requirement already satisfied: requests in ./.venv/lib/python3.13/site-packages (from folium->-r requirements.txt (line 6)) (2.32.5)
+Requirement already satisfied: xyzservices in ./.venv/lib/python3.13/site-packages (from folium->-r requirements.txt (line 6)) (2025.4.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.venv/lib/python3.13/site-packages (from jinja2>=2.9->folium->-r requirements.txt (line 6)) (3.0.3)
+Requirement already satisfied: six>=1.5 in ./.venv/lib/python3.13/site-packages (from python-dateutil>=2.8.2->pandas->-r requirements.txt (line 3)) (1.17.0)
+Requirement already satisfied: idna<4,>=2.5 in ./.venv/lib/python3.13/site-packages (from requests->folium->-r requirements.txt (line 6)) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.venv/lib/python3.13/site-packages (from requests->folium->-r requirements.txt (line 6)) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in ./.venv/lib/python3.13/site-packages (from requests->folium->-r requirements.txt (line 6)) (2025.10.5)
+[+] MySQL client found.
+[+] MySQL service is running.
+[*] Running SQL setup from setup.sql ...
+--------------
+CREATE TABLE ProjectDB (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    startTime DATETIME NOT NULL,
+    stopTime DATETIME,
+    projectType VARCHAR(20) CHECK (projectType IN ('sniff_external', 'sniff_internal', 'heatmap'))
+)
+--------------
+
+ERROR 1050 (42S01) at line 14: Table 'ProjectDB' already exists
+
+[*] Checking network interfaces...
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether 00:0c:29:7b:e9:c4 brd ff:ff:ff:ff:ff:ff
+3: br-22f1c1128960: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:c4:1a:a5:df brd ff:ff:ff:ff:ff:ff
+4: br-6ac09050e671: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:f7:2e:f2:ce brd ff:ff:ff:ff:ff:ff
+5: br-6beb009876a7: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:2f:d5:c0:53 brd ff:ff:ff:ff:ff:ff
+6: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:e4:e3:82:fa brd ff:ff:ff:ff:ff:ff
+7: br-034f3551f963: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:d6:75:5c:f3 brd ff:ff:ff:ff:ff:ff
+
+[*] Checking monitor mode interfaces...
+
+[*] Active Wi-Fi connections:
+
+===== Initialization completed at Sun Oct  5 11:22:44 PM EDT 2025 =====
+
+
+[*] Running Python script: ./app/app.py

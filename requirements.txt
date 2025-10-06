@@ -4,5 +4,4 @@ pandas
 reportlab
 pywebview[GTK]
 folium
-libwebkit2gtk-4.1-dev
-gir1.2-webkit2-4.1
+
