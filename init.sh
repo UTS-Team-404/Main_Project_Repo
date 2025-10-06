@@ -12,6 +12,7 @@
 #   - Logs to stdout and a logfile (init.log)
 # ========================================
 
+VENV_DIR=".venv"
 LOGFILE="./initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
 PYTHON_SCRIPT="main.py"       # <-- change this to your script
 SQL_FILE="setup.sql"          # <-- change this to your SQL setup file
@@ -27,6 +28,20 @@ log() {
 
 # Timestamp
 log "\n===== Initialization started at $(date) =====\n"
+
+# --- Check for sudo/root ---
+if [ "$EUID" -ne 0 ]; then
+    log "[!] Please run this script with sudo or as root."
+    exit 1
+fi
+log "[+] Running with root privileges."
+
+# --- Find base user (who invoked sudo) ---
+BASE_USER=${SUDO_USER:-$USER}
+BASE_HOME=$(eval echo "~$BASE_USER")
+
+log "[*] Script executed by: $BASE_USER"
+
 
 # --- Check for Python 3 ---
 if command -v python3 &>/dev/null; then
@@ -46,13 +61,41 @@ else
     exit 1
 fi
 
-# --- Check for requirements.txt and install ---
+# --- Check for venv module ---
+if ! python3 -m venv --help &>/dev/null; then
+    log "[!] The 'venv' module is not available in your Python installation."
+    exit 1
+fi
+
+# --- Create virtual environment if missing ---
+if [ ! -d "$VENV_DIR" ]; then
+    log "[*] Creating Python virtual environment in $VENV_DIR ..."
+    python3 -m venv "$VENV_DIR"
+    if [ $? -ne 0 ]; then
+        log "[X] Failed to create virtual environment."
+        exit 1
+    fi
+else
+    log "[+] Virtual environment already exists ($VENV_DIR)"
+fi
+
+# --- Activate the venv ---
+log "[*] Activating virtual environment..."
+# shellcheck disable=SC1091
+source "$VENV_DIR/bin/activate"
+
+# --- Upgrade pip ---
+log "[*] Upgrading pip inside venv..."
+pip install --upgrade pip 2>&1 | tee -a "$LOGFILE"
+
+# --- Install requirements ---
 if [ -f "$REQUIREMENTS_FILE" ]; then
-    log "[*] Checking Python dependencies..."
-    python3 -m pip install -r "$REQUIREMENTS_FILE" 2>&1 | tee -a "$LOGFILE"
+    log "[*] Installing Python dependencies from $REQUIREMENTS_FILE ..."
+    pip install -r "$REQUIREMENTS_FILE" 2>&1 | tee -a "$LOGFILE"
 else
     log "[!] No requirements.txt found — skipping dependency check."
 fi
+
 
 # --- Check MySQL installation ---
 if command -v mysql &>/dev/null; then
@@ -79,7 +122,7 @@ fi
 # --- Run SQL setup file ---
 if [ -f "$SQL_FILE" ]; then
     log "[*] Running SQL setup from $SQL_FILE ..."
-    mysql -u root -p < "$SQL_FILE" 2>&1 | tee -a "$LOGFILE"
+    mysql < "$SQL_FILE" 2>&1 | tee -a "$LOGFILE"
 else
     log "[!] SQL setup file '$SQL_FILE' not found."
 fi
