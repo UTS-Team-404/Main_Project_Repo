@@ -4,4 +4,4 @@ pandas
 reportlab
 pywebview[GTK]
 folium
-
+numpy

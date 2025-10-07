@@ -1,5 +1,5 @@
 
-===== Initialization started at Sun Oct  5 10:56:59 PM EDT 2025 =====
+===== Initialization started at Mon Oct  6 12:21:02 AM EDT 2025 =====
 
 [+] Running with root privileges.
 
@@ -19,23 +19,52 @@ pkg-config is already the newest version (1.8.1-4).
 python3-dev is already the newest version (3.13.5-1).
 libgtk-3-dev is already the newest version (3.24.50-2).
 build-essential is already the newest version (12.12).
-The following packages were automatically installed and are no longer required:
-  libflac12t64           python3-dockerpty
-  libfuse3-3             python3-dunamai
-  libgeos3.13.0          python3-nfsclient
-  libglapi-mesa          python3-poetry-dynamic-versioning
-  liblbfgsb0             python3-requests-ntlm
-  libpoppler145          python3-setproctitle
-  libpython3.12-minimal  python3-texttable
-  libpython3.12-stdlib   python3-tomlkit
-  libpython3.12t64       python3.12-tk
-  libutempter0           ruby-zeitwerk
-  python3-compose        strongswan
-  python3-docker
-Use 'sudo apt autoremove' to remove them.
+libwebkit2gtk-4.1-dev is already the newest version (2.50.0-2).
+gir1.2-webkit2-4.1 is already the newest version (2.50.0-2).
+The following package was automatically installed and is no longer required:
+  libjxl0.10
+Use 'sudo apt autoremove' to remove it.
+
+Installing:
+  libopenblas-dev
+
+Installing dependencies:
+  libopenblas-pthread-dev  libopenblas0  libopenblas0-pthread
 
 Summary:
-  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 1133
+  Upgrading: 0, Installing: 4, Removing: 0, Not Upgrading: 1122
+  Download size: 11.9 MB
+  Space needed: 111 MB / 25.5 GB available
+
+Get:2 http://http.kali.org/kali kali-rolling/main amd64 libopenblas0 amd64 0.3.29+ds-3 [42.7 kB]
+Get:1 http://http.kali.org/kali kali-rolling/main amd64 libopenblas0-pthread amd64 0.3.29+ds-3 [6,740 kB]
+Get:3 http://http.kali.org/kali kali-rolling/main amd64 libopenblas-pthread-dev amd64 0.3.29+ds-3 [5,063 kB]
+Get:4 http://http.kali.org/kali kali-rolling/main amd64 libopenblas-dev amd64 0.3.29+ds-3 [57.0 kB]
+Fetched 11.9 MB in 3s (3,828 kB/s)
+Selecting previously unselected package libopenblas0-pthread:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 426739 files and directories currently installed.)
+Preparing to unpack .../libopenblas0-pthread_0.3.29+ds-3_amd64.deb ...
+Unpacking libopenblas0-pthread:amd64 (0.3.29+ds-3) ...
+Selecting previously unselected package libopenblas0:amd64.
+Preparing to unpack .../libopenblas0_0.3.29+ds-3_amd64.deb ...
+Unpacking libopenblas0:amd64 (0.3.29+ds-3) ...
+Selecting previously unselected package libopenblas-pthread-dev:amd64.
+Preparing to unpack .../libopenblas-pthread-dev_0.3.29+ds-3_amd64.deb ...
+Unpacking libopenblas-pthread-dev:amd64 (0.3.29+ds-3) ...
+Selecting previously unselected package libopenblas-dev:amd64.
+Preparing to unpack .../libopenblas-dev_0.3.29+ds-3_amd64.deb ...
+Unpacking libopenblas-dev:amd64 (0.3.29+ds-3) ...
+Setting up libopenblas0-pthread:amd64 (0.3.29+ds-3) ...
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 to provide /usr/lib/x86_64-linux-gnu/libblas.so.3 (libblas.so.3-x86_64-linux-gnu) in auto mode
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3 to provide /usr/lib/x86_64-linux-gnu/liblapack.so.3 (liblapack.so.3-x86_64-linux-gnu) in auto mode
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblas.so.0 to provide /usr/lib/x86_64-linux-gnu/libopenblas.so.0 (libopenblas.so.0-x86_64-linux-gnu) in auto mode
+Setting up libopenblas0:amd64 (0.3.29+ds-3) ...
+Setting up libopenblas-pthread-dev:amd64 (0.3.29+ds-3) ...
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so to provide /usr/lib/x86_64-linux-gnu/libblas.so (libblas.so-x86_64-linux-gnu) in auto mode
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so to provide /usr/lib/x86_64-linux-gnu/liblapack.so (liblapack.so-x86_64-linux-gnu) in auto mode
+update-alternatives: using /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblas.so to provide /usr/lib/x86_64-linux-gnu/libopenblas.so (libopenblas.so-x86_64-linux-gnu) in auto mode
+Setting up libopenblas-dev:amd64 (0.3.29+ds-3) ...
+Processing triggers for libc-bin (2.41-6) ...
 [+] System packages installed successfully.
 [*] Script executed by: kali
 [+] Python found: Python 3.13.7
@@ -50,8 +79,8 @@ Requirement already satisfied: mysql-connector-python in ./.venv/lib/python3.13/
 Requirement already satisfied: pandas in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 3)) (2.3.3)
 Requirement already satisfied: reportlab in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 4)) (4.4.4)
 Requirement already satisfied: folium in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 6)) (0.20.0)
+Requirement already satisfied: numpy in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 7)) (2.3.3)
 Requirement already satisfied: pywebview[GTK] in ./.venv/lib/python3.13/site-packages (from -r requirements.txt (line 5)) (6.0)
-Requirement already satisfied: numpy>=1.26.0 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2.3.3)
 Requirement already satisfied: python-dateutil>=2.8.2 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2.9.0.post0)
 Requirement already satisfied: pytz>=2020.1 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2025.2)
 Requirement already satisfied: tzdata>=2022.7 in ./.venv/lib/python3.13/site-packages (from pandas->-r requirements.txt (line 3)) (2025.2)
@@ -106,7 +135,7 @@ ERROR 1050 (42S01) at line 14: Table 'ProjectDB' already exists
 
 [*] Active Wi-Fi connections:
 
-===== Initialization completed at Sun Oct  5 10:57:01 PM EDT 2025 =====
+===== Initialization completed at Mon Oct  6 12:21:09 AM EDT 2025 =====
 
 
 [*] Running Python script: ./app/app.py

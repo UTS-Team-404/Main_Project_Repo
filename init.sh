@@ -31,6 +31,7 @@ APT_PACKAGES=(
     build-essential
     libwebkit2gtk-4.1-dev
     gir1.2-webkit2-4.1
+    libopenblas-dev
 )
 
 # Create or clear log
