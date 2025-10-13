@@ -16,6 +16,7 @@
 VENV_DIR=".venv"
 LOGFILE="./initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
 PYTHON_SCRIPT="./app/app.py"       # <-- change this to your script
+WEBPYTHON_SCRIPT= "./web/Integrated-Web-UI-main/web/app.py"
 SQL_FILE="setup.sql"          # <-- change this to your SQL setup file
 REQUIREMENTS_FILE="requirements.txt"
 
@@ -174,6 +175,10 @@ log "\n===== Initialization completed at $(date) =====\n"
 
 # --- Run the Python script ---
 if [ -f "$PYTHON_SCRIPT" ]; then
+    log "\n[*] Starting web UI: $PYTHON_SCRIPT in background..."
+    sudo ./.venv/bin/python3 web/Integrated-Web-UI-main/web/app.py & 
+    WEB_PID=$!
+    log "[+] Web UI started successfully (PID: $WEB_PID)"
     log "\n[*] Running Python script: $PYTHON_SCRIPT"
     sudo ./.venv/bin/python3 "$PYTHON_SCRIPT" --no-sandbox 2>&1
 else

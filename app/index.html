@@ -129,10 +129,10 @@
     // WiFi Page: Load data from Python backend
     async function loadWiFiData() {
       const container = document.getElementById('wifi-content');
-      container.innerHTML = 'Loading...';
+      container.innerHTML = 'Loadingssss...';
 
       try {
-        const wifiData = await window.pywebview.api.get_wifi_data();
+        const wifiData = await window.pywebview.api.get_wifi_data().then(showResponse);
 
         if (!wifiData.length) {
           container.innerHTML = '<p>No WiFi data found.</p>';

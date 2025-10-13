@@ -98,6 +98,7 @@ class HeatmapApp:
 
     def get_wifi_data(self):
         """Returns WiFi data to the frontend."""
+        print("e")
         return self.wifi_data
 
     def on_wifi_click(self, ssid):
