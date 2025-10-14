@@ -179,6 +179,9 @@ if [ -f "$PYTHON_SCRIPT" ]; then
     sudo ./.venv/bin/python3 web/Integrated-Web-UI-main/web/app.py & 
     WEB_PID=$!
     log "[+] Web UI started successfully (PID: $WEB_PID)"
+    sudo ./.venv/bin/python3 scan/scan.py -i wlan0 & 
+    SCAN_PID=$!
+    log "[+] Scanner started successfully (PID: $SCAN_PID)"
     log "\n[*] Running Python script: $PYTHON_SCRIPT"
     sudo ./.venv/bin/python3 "$PYTHON_SCRIPT" --no-sandbox 2>&1
 else
