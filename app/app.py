@@ -78,46 +78,7 @@ class HeatmapGenerator:
 
 class HeatmapApp:
 
-    # def generate_external_heatmap_from_sql(self):
-    #     """Generates a heatmap using gpsLat, gpsLong, and strength from the SQL DB."""
-    #     conn = get_connection()
-    #     cursor = conn.cursor()
-
-    #     query = """
-    #     SELECT gpsLat, gpsLong, strength
-    #     FROM IngestDB
-    #     WHERE gpsLat IS NOT NULL AND gpsLong IS NOT NULL;
-    #     """
-    #     cursor.execute(query)
-    #     rows = cursor.fetchall()
-    #     conn.close()
-
-    #     if not rows:
-    #         return {"success": False, "message": "No GPS data found."}
-
-    #     heat_data = []
-    #     for row in rows:
-    #         try:
-    #             lat = float(row[0])
-    #             lon = float(row[1])
-    #             strength = float(row[2])
-    #             heat_data.append([lat, lon, max(0, 100 + strength)])  # normalize
-    #         except (TypeError, ValueError):
-    #             continue
-
-    #     if not heat_data:
-    #         return {"success": False, "message": "No valid GPS data available."}
-
-    #     avg_lat = sum(d[0] for d in heat_data) / len(heat_data)
-    #     avg_lon = sum(d[1] for d in heat_data) / len(heat_data)
-
-    #     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=19)
-    #     HeatMap(heat_data).add_to(m)
-
-    #     output_file = 'external_heatmap.html'
-    #     m.save(output_file)
-
-    #     return {"success": True, "file": output_file}
+  
 
     def generate_heatmap_for_ssid(self, ssid):
         """Generate heatmap for a specific SSID from SQL DB"""
@@ -240,7 +201,7 @@ class HeatmapApp:
                         ORDER BY captureTime DESC 
                         LIMIT 1)
         GROUP BY srcMac
-        ORDER BY lastSeen ASC;"""
+        ORDER BY MAC ASC;"""
         
         cursor.execute(query)
         rows = cursor.fetchall()

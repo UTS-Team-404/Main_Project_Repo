@@ -276,7 +276,7 @@ function displayAnalytics(data) {
 
   const ssid = selectedSSID;  // use the globally selected SSID
 
-  // 👉 Add Heatmap Button
+  //Add Heatmap Button
   const heatmapBtn = document.createElement('button');
   heatmapBtn.innerText = `Generate Heatmap for "${ssid}"`;
   heatmapBtn.style.padding = '10px 20px';
@@ -291,25 +291,61 @@ function displayAnalytics(data) {
   heatmapBtn.onclick = () => generateSSIDHeatmap(ssid);
   container.appendChild(heatmapBtn);
 
-  // Start polling signal strength
-  if (signalInterval) {
-    clearInterval(signalInterval);
-  }
+  // Start polling full analytics every second
+if (signalInterval) {
+  clearInterval(signalInterval);
+}
 
-  signalInterval = setInterval(async () => {
-    try {
-      const result = await window.pywebview.api.get_latest_signal(ssid);
-      if (result.strength !== null) {
-        const distance = calculateDistanceFromSignal(result.strength);
-        liveContainer.innerHTML = `📶 <strong>Live Signal Strength:</strong> ${result.strength} dBm &nbsp; | &nbsp; 📏 <strong>Estimated Distance:</strong> ${distance} m (FSPL)`;
-      } else {
-        liveContainer.innerHTML = `📶 No live signal data available for SSID: ${ssid}`;
-      }
-    } catch (err) {
-      console.error("Error polling signal strength:", err);
-      liveContainer.innerHTML = "❌ Error fetching live signal data.";
+async function refreshAnalytics() {
+  try {
+    const result = await window.pywebview.api.on_wifi_click(ssid);
+
+    if (!result || !result.length) {
+      liveContainer.innerHTML = '<p>No data found for selected SSID.</p>';
+      return;
     }
-  }, 500);
+
+    // Live signal from most recent MAC
+    const mostRecent = result[0];
+    if (mostRecent.mostRecentStrength !== null) {
+      const distance = calculateDistanceFromSignal(mostRecent.mostRecentStrength);
+      liveContainer.innerHTML = `📶 <strong>Live Signal Strength:</strong> ${mostRecent.mostRecentStrength} dBm &nbsp; | &nbsp; 📏 <strong>Distance:</strong> ${distance} m`;
+    } else {
+      liveContainer.innerHTML = `📶 No live signal data available for SSID: ${ssid}`;
+    }
+
+    // Remove old cards
+    document.querySelectorAll('.wifi-card').forEach(card => card.remove());
+
+    // Render updated cards
+    result.forEach((entry, index) => {
+      const card = document.createElement('div');
+      card.className = 'wifi-card';
+
+      let content = `<h3>Device ${index + 1}</h3><ul>`;
+      for (const [key, value] of Object.entries(entry)) {
+        let displayValue = value;
+        if (key === "mostRecentStrength") {
+          const distance = calculateDistanceFromSignal(value);
+          displayValue = `${value} dBm <span style="margin-left:10px;">(~${distance} m)</span>`;
+        }
+        content += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+      }
+
+      content += '</ul>';
+      card.innerHTML = content;
+      container.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error("Error updating analytics:", err);
+    liveContainer.innerHTML = "❌ Error updating analytics.";
+  }
+}
+
+refreshAnalytics(); // Initial render
+signalInterval = setInterval(refreshAnalytics, 1000); // Repeat every second
+
 
   // Display each record
   data.forEach((entry, index) => {
