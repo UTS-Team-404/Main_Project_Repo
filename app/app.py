@@ -163,7 +163,9 @@ class HeatmapApp:
         self.generator.create_heatmap()
         print("Heatmap regenerated!")
 
-        
+    def reboot_click(self):
+        os.system("reboot")
+
     def on_wifi_click(self, ssid):
         """Return full analytics data for selected SSID from SQL database."""
         conn = get_connection()

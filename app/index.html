@@ -69,6 +69,7 @@
     <a href="#" class="nav-link active" data-page="home">Home</a>
     <a href="#" class="nav-link" data-page="wifi">WiFi</a>
     <a href="#" class="nav-link" data-page="Analytics">Analytics</a>
+    <a href="#" class="nav-link" data-page="Reboot">Reboot</a>
   </div>
 
   <!-- Pages -->
@@ -164,6 +165,9 @@
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetPage = link.dataset.page;
+        if (targetPage === "Reboot"){
+          window.pywebview.api.reboot_click();
+        }
 
         // Toggle active link and page
         links.forEach(l => l.classList.remove('active'));
@@ -182,13 +186,14 @@
           initHeatmap();
         }
 
-          if (targetPage === 'wifi'){
+        if (targetPage === 'wifi'){
+        loadWiFiData();
+        // Start auto-refresh every 5 seconds
+        wifiRefreshInterval = setInterval(() => {
           loadWiFiData();
-          // Start auto-refresh every 5 seconds
-          wifiRefreshInterval = setInterval(() => {
-            loadWiFiData();
-          }, 1000);
+        }, 1000);
         }
+
 
       });
     });
@@ -202,7 +207,6 @@
   if (window.pywebview) {
     try {
       const data = await window.pywebview.api.on_wifi_click(selectedSSID);
-      console.log(data);
       displayAnalytics(data);
     } catch (err) {
       alert("Failed to load analytics.");
@@ -322,14 +326,21 @@ async function refreshAnalytics() {
       const card = document.createElement('div');
       card.className = 'wifi-card';
 
-      let content = `<h3>Device ${index + 1}</h3><ul>`;
+      let content = ""
+      
       for (const [key, value] of Object.entries(entry)) {
         let displayValue = value;
+        console.log(key, value)
         if (key === "mostRecentStrength") {
           const distance = calculateDistanceFromSignal(value);
           displayValue = `${value} dBm <span style="margin-left:10px;">(~${distance} m)</span>`;
+          content += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+        } else if (key === "MAC"){
+          content = `<h3>${value}</h3><ul>`;
+        } else {
+          content += `<li><strong>${key}:</strong> ${displayValue}</li>`;
         }
-        content += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+        
       }
 
       content += '</ul>';
@@ -352,7 +363,7 @@ signalInterval = setInterval(refreshAnalytics, 1000); // Repeat every second
     const card = document.createElement('div');
     card.className = 'wifi-card';
 
-    let content = `<h3>Device ${index + 1}</h3><ul>`;
+    let content = `<h3>Device ${Object.entries(entry)['MAC']}</h3><ul>`;
     for (const [key, value] of Object.entries(entry)) {
       let displayValue = value;
 

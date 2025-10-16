@@ -312,9 +312,11 @@ def make_printer(sniff_type_value, project_id):
         enc_type, auth_mode = get_encryption_info(pkt)
 
         with _gps_lock:
-            glat = int(_gps_lat) if _gps_lat is not None else None
-            glon = int(_gps_lon) if _gps_lon is not None else None
+            glat = _gps_lat if _gps_lat is not None else None
+            glon = _gps_lon if _gps_lon is not None else None
 
+        if not ssid:
+            ssid = "(hidden)"
         # Prepare entry tuple matching the INSERT query order
         entry = (
             project_id,      # projectID
@@ -347,6 +349,7 @@ def make_printer(sniff_type_value, project_id):
             ip_src, ip_dst, sp, dp, sniff_type_value
         ]
         print(",".join(csvq(x) for x in csv_row), flush=True)
+        print(db_queue.qsize())
 
     return prn
 
