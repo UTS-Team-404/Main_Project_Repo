@@ -1,3 +1,3 @@
-[submodule "Integrated-Web-UI"]
+[submodule "web"]
 	path = web
 	url = https://github.com/UTS-Team-404/Integrated-Web-UI
