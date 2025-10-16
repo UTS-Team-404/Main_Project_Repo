@@ -78,22 +78,63 @@ class HeatmapGenerator:
 
 class HeatmapApp:
 
-    def generate_external_heatmap_from_sql(self):
-        """Generates a heatmap using gpsLat, gpsLong, and strength from the SQL DB."""
+    # def generate_external_heatmap_from_sql(self):
+    #     """Generates a heatmap using gpsLat, gpsLong, and strength from the SQL DB."""
+    #     conn = get_connection()
+    #     cursor = conn.cursor()
+
+    #     query = """
+    #     SELECT gpsLat, gpsLong, strength
+    #     FROM IngestDB
+    #     WHERE gpsLat IS NOT NULL AND gpsLong IS NOT NULL;
+    #     """
+    #     cursor.execute(query)
+    #     rows = cursor.fetchall()
+    #     conn.close()
+
+    #     if not rows:
+    #         return {"success": False, "message": "No GPS data found."}
+
+    #     heat_data = []
+    #     for row in rows:
+    #         try:
+    #             lat = float(row[0])
+    #             lon = float(row[1])
+    #             strength = float(row[2])
+    #             heat_data.append([lat, lon, max(0, 100 + strength)])  # normalize
+    #         except (TypeError, ValueError):
+    #             continue
+
+    #     if not heat_data:
+    #         return {"success": False, "message": "No valid GPS data available."}
+
+    #     avg_lat = sum(d[0] for d in heat_data) / len(heat_data)
+    #     avg_lon = sum(d[1] for d in heat_data) / len(heat_data)
+
+    #     m = folium.Map(location=[avg_lat, avg_lon], zoom_start=19)
+    #     HeatMap(heat_data).add_to(m)
+
+    #     output_file = 'external_heatmap.html'
+    #     m.save(output_file)
+
+    #     return {"success": True, "file": output_file}
+
+    def generate_heatmap_for_ssid(self, ssid):
+        """Generate heatmap for a specific SSID from SQL DB"""
         conn = get_connection()
         cursor = conn.cursor()
 
         query = """
         SELECT gpsLat, gpsLong, strength
         FROM IngestDB
-        WHERE gpsLat IS NOT NULL AND gpsLong IS NOT NULL;
+        WHERE SSID = %s AND gpsLat IS NOT NULL AND gpsLong IS NOT NULL;
         """
-        cursor.execute(query)
+        cursor.execute(query, (ssid,))
         rows = cursor.fetchall()
         conn.close()
 
         if not rows:
-            return {"success": False, "message": "No GPS data found."}
+            return {"success": False, "message": f"No GPS data found for SSID: {ssid}"}
 
         heat_data = []
         for row in rows:
@@ -101,7 +142,7 @@ class HeatmapApp:
                 lat = float(row[0])
                 lon = float(row[1])
                 strength = float(row[2])
-                heat_data.append([lat, lon, max(0, 100 + strength)])  # normalize
+                heat_data.append([lat, lon, max(0, 100 + strength)])  # Normalize
             except (TypeError, ValueError):
                 continue
 
@@ -114,16 +155,36 @@ class HeatmapApp:
         m = folium.Map(location=[avg_lat, avg_lon], zoom_start=19)
         HeatMap(heat_data).add_to(m)
 
-        output_file = 'external_heatmap.html'
+        output_file = f'heatmap_ssid_{ssid}.html'
         m.save(output_file)
 
         return {"success": True, "file": output_file}
 
 
-
     def __init__(self):
         self.generator = HeatmapGenerator()
         self.wifi_data = self.read_wifi_data()
+
+    def get_latest_signal(self, ssid):
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        query = """
+        SELECT strength
+        FROM IngestDB
+        WHERE SSID = %s
+        ORDER BY captureTime DESC
+        LIMIT 1;
+        """
+        cursor.execute(query, (ssid,))
+        result = cursor.fetchone()
+        conn.close()
+
+        if result:
+            return {"strength": result[0]}
+        else:
+            return {"strength": None}
+
 
 
     def run(self):
@@ -141,47 +202,67 @@ class HeatmapApp:
         self.generator.create_heatmap()
         print("Heatmap regenerated!")
 
-    
-
+        
     def on_wifi_click(self, ssid):
         """Return full analytics data for selected SSID from SQL database."""
         conn = get_connection()
         cursor = conn.cursor()
-
-        query = """
-        SELECT ID, projectID, captureTime, srcMac, dstMac, SSID, encType,
-            authMode, gpsLat, gpsLong, strength, contentLength,
-            typeExternal, typeInternal, srcIP, dstIP, srcPort,
-            dstPort, sniffType
-        FROM IngestDB
-        WHERE SSID = %s
-        ORDER BY captureTime DESC
-        LIMIT 1;
-        """
-        cursor.execute(query, (ssid,))
+        query = f"""SELECT 
+            srcMac AS MAC,
+            (SELECT strength 
+            FROM IngestDB i2 
+            WHERE i2.srcMac = i1.srcMac 
+            AND i2.SSID = i1.SSID 
+            AND i2.projectID = i1.projectID
+            ORDER BY captureTime DESC 
+            LIMIT 1) AS mostRecentStrength,
+            ROUND(AVG(strength), 2) AS AvgStrength,
+            COUNT(*) AS count,
+            TIMESTAMPDIFF(SECOND, MAX(captureTime), NOW()) AS lastSeen,
+            (SELECT encType 
+            FROM IngestDB i2 
+            WHERE i2.srcMac = i1.srcMac 
+            AND i2.SSID = i1.SSID 
+            AND i2.projectID = i1.projectID
+            ORDER BY captureTime DESC 
+            LIMIT 1) AS encType,
+            (SELECT authMode 
+            FROM IngestDB i2 
+            WHERE i2.srcMac = i1.srcMac 
+            AND i2.SSID = i1.SSID 
+            AND i2.projectID = i1.projectID
+            ORDER BY captureTime DESC 
+            LIMIT 1) AS authMode
+        FROM IngestDB i1
+        WHERE SSID = '{ssid}'
+        AND projectID = (SELECT projectID 
+                        FROM IngestDB 
+                        ORDER BY captureTime DESC 
+                        LIMIT 1)
+        GROUP BY srcMac
+        ORDER BY lastSeen ASC;"""
+        
+        cursor.execute(query)
         rows = cursor.fetchall()
         conn.close()
-
-        # Column names must match the SELECT statement
+        
         column_names = [
-            "ID", "projectID", "captureTime", "srcMac", "dstMac", "SSID", "encType",
-            "authMode", "gpsLat", "gpsLong", "strength", "contentLength",
-            "typeExternal", "typeInternal", "srcIP", "dstIP", "srcPort",
-            "dstPort", "sniffType"
+            "MAC", "mostRecentStrength", "AvgStrength", "count",
+            "lastSeen", "encType", "authMode"
         ]
-
+        
         result = []
         for row in rows:
-            record = dict(zip(column_names, row))
-
-            # Convert datetime to string (ISO format)
-            if isinstance(record["captureTime"], datetime):
-                record["captureTime"] = record["captureTime"].isoformat()
-
+            record = {}
+            for i, col_name in enumerate(column_names):
+                value = row[i]
+                # Convert Decimal to float for JSON serialization
+                if hasattr(value, '__float__'):  # Check if it's a Decimal-like type
+                    value = float(value)
+                record[col_name] = value
             result.append(record)
-
+        
         return result
-
 
 
     def read_wifi_data(self):

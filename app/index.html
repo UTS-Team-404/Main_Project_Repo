@@ -68,7 +68,6 @@
   <div class="navbar">
     <a href="#" class="nav-link active" data-page="home">Home</a>
     <a href="#" class="nav-link" data-page="wifi">WiFi External</a>
-    <a href="#" class="nav-link" data-page="heatmap">Heatmap</a>
     <a href="#" class="nav-link" data-page="Analytics">Analytics</a>
   </div>
 
@@ -90,7 +89,6 @@
   const container = document.getElementById('wifi-content');
   try {
     const wifiData = await window.pywebview.api.get_wifiIn_data();
-    console.log(wifiData)
     if (!wifiData.length) {
       container.innerHTML = '<p>No WiFi data found.</p>';
       return;
@@ -216,6 +214,7 @@
       if (window.pywebview) {
         try {
           const data = await window.pywebview.api.on_wifi_click(selectedSSID);
+          console.log(data)
           displayAnalytics(data);
         } catch (err) {
           alert("Failed to load analytics.");
@@ -247,67 +246,166 @@
   }
 
 
+  
+
+
   // function displayAnalytics(data) {
   //   const container = document.getElementById('Analytics');
-  //   const output = document.createElement('div');
+  //   container.innerHTML = '<h1>Analytics</h1>';
 
   //   if (!data.length) {
-  //     output.innerHTML = '<p>No data found for selected SSID.</p>';
-  //   } else {
-  //     output.innerHTML = `
-  //       <h2>Analytics for SSID: ${data[0].ssid}</h2>
-  //       <ul>
-  //         ${data.map(item => `<li>Signal Strength: ${item.strength}</li>`).join('')}
-  //       </ul>
-  //     `;
+  //     container.innerHTML += '<p>No data found for selected SSID.</p>';
+  //     return;
   //   }
 
-  //   // Replace any existing content
-  //   const existing = document.getElementById('Analytics');
-  //   existing.innerHTML = '<h1>Analytics</h1>';
-  //   existing.appendChild(output);
+  //   // Display each record in a collapsible card or table
+  //   data.forEach((entry, index) => {
+  //     const card = document.createElement('div');
+  //     card.className = 'wifi-card';
+
+  //     let content = `<h3>Record ${index + 1}</h3>
+
+  //     <button onclick="generateSSIDHeatmap('${entry.SSID}')" style="padding: 5px 10px;">Heatmap</button><ul>`;
+        
+  //     for (const [key, value] of Object.entries(entry)) {
+  //       let displayValue = value;
+
+  //       // If this is the signal strength key, add estimated distance
+  //       if (key === "strength") {
+  //         const distance = calculateDistanceFromSignal(value);
+  //         displayValue = `${value} dBm <span style="margin-left:10px;">(~${distance}m)</span>`;
+  //       }
+
+  //       content += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+  //     }
+
+  //     content += '</ul>';
+  //     card.innerHTML = content;
+  //     container.appendChild(card);
+  //   });
 
   //   // Navigate to Analytics tab
   //   document.querySelector('[data-page="Analytics"]').click();
   // }
 
 
-  function displayAnalytics(data) {
-    const container = document.getElementById('Analytics');
-    container.innerHTML = '<h1>Analytics</h1>';
-
-    if (!data.length) {
-      container.innerHTML += '<p>No data found for selected SSID.</p>';
-      return;
-    }
-
-    // Display each record in a collapsible card or table
-    data.forEach((entry, index) => {
-      const card = document.createElement('div');
-      card.className = 'wifi-card';
-
-      let content = `<h3>Record ${index + 1}</h3><ul>`;
-
-      for (const [key, value] of Object.entries(entry)) {
-        content += `<li><strong>${key}:</strong> ${value}</li>`;
-      }
-
-      content += '</ul>';
-      card.innerHTML = content;
-      container.appendChild(card);
-    });
-
-    // Navigate to Analytics tab
-    document.querySelector('[data-page="Analytics"]').click();
-  }
-
-
 
 
 </script>
 
+<script> 
 
-  
+function calculateDistanceFromSignal(signalStrength, frequencyMHz = 2400) {
+  const fspl = Math.abs(signalStrength); // Ensure positive dB
+  const exponent = (fspl + 27.55 - (20 * Math.log10(frequencyMHz))) / 20;
+  const distance = Math.pow(10, exponent);
+  return distance.toFixed(2); // in meters
+}
+</script>
+
+<script>
+  async function generateSSIDHeatmap(ssid) {
+    try {
+      const result = await window.pywebview.api.generate_heatmap_for_ssid(ssid);
+
+      if (result.success) {
+        const container = document.getElementById('Analytics');
+        container.innerHTML = `
+          <h1>SSID Heatmap for "${ssid}"</h1>
+          <iframe src="${result.file}" width="100%" height="600px" style="border: none;"></iframe>
+        `;
+
+        document.querySelector('[data-page="Analytics"]').click();
+      } else {
+        alert(result.message || "Failed to generate heatmap.");
+      }
+    } catch (error) {
+      console.error("Error generating SSID heatmap:", error);
+      alert("Error generating SSID heatmap.");
+    }
+  }
+</script>
+
+<script>
+let signalInterval = null;
+
+function calculateDistanceFromSignal(signalStrength, frequencyMHz = 2400) {
+  const fspl = Math.abs(signalStrength);
+  const exponent = (fspl + 27.55 - (20 * Math.log10(frequencyMHz))) / 20;
+  const distance = Math.pow(10, exponent);
+  return distance.toFixed(2); // meters
+}
+
+function displayAnalytics(data) {
+  const container = document.getElementById('Analytics');
+  container.innerHTML = '<h1>Analytics</h1>';
+
+  // Add live signal strength + FSPL display container
+  const liveContainer = document.createElement('div');
+  liveContainer.id = 'live-signal';
+  liveContainer.style.marginBottom = '20px';
+  liveContainer.style.fontSize = '18px';
+  liveContainer.style.color = '#90ee90'; // light green
+  container.appendChild(liveContainer);
+
+  if (!data.length) {
+    liveContainer.innerHTML = '<p>No data found for selected SSID.</p>';
+    return;
+  }
+
+  const ssid = data[0].SSID;
+
+  // Clear any existing polling interval
+  if (signalInterval) {
+    clearInterval(signalInterval);
+  }
+
+  // Start 500ms interval to fetch signal strength + FSPL
+  signalInterval = setInterval(async () => {
+    try {
+      const result = await window.pywebview.api.get_latest_signal(ssid);
+      if (result.strength !== null) {
+        const distance = calculateDistanceFromSignal(result.strength);
+        liveContainer.innerHTML = `📶 <strong>Live Signal Strength:</strong> ${result.strength} dBm &nbsp; | &nbsp; 📏 <strong>Estimated Distance:</strong> ${distance} m (FSPL)`;
+      } else {
+        liveContainer.innerHTML = `📶 No live signal data available for SSID: ${ssid}`;
+      }
+    } catch (err) {
+      console.error("Error polling signal strength:", err);
+      liveContainer.innerHTML = "❌ Error fetching live signal data.";
+    }
+  }, 500);
+
+  // Display static analytics records below
+  data.forEach((entry, index) => {
+    const card = document.createElement('div');
+    card.className = 'wifi-card';
+
+    let content = `<h3>Record ${index + 1}</h3>
+    <button onclick="generateSSIDHeatmap('${entry.SSID}')" style="padding: 5px 10px;">Heatmap</button>
+    <ul>`;
+
+    for (const [key, value] of Object.entries(entry)) {
+      let displayValue = value;
+
+      if (key === "strength") {
+        const distance = calculateDistanceFromSignal(value);
+        displayValue = `${value} dBm <span style="margin-left:10px;">(~${distance} m)</span>`;
+      }
+
+      content += `<li><strong>${key}:</strong> ${displayValue}</li>`;
+    }
+
+    content += '</ul>';
+    card.innerHTML = content;
+    container.appendChild(card);
+  });
+
+  // Navigate to Analytics tab
+  document.querySelector('[data-page="Analytics"]').click();
+}
+</script>
+
 
 
   <!-- Popup Modal

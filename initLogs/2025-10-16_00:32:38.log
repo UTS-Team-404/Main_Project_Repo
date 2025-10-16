@@ -1,5 +1,5 @@
 
-===== Initialization started at Wed Oct 15 10:07:01 PM EDT 2025 =====
+===== Initialization started at Thu Oct 16 12:32:38 AM EDT 2025 =====
 
 [+] Running with root privileges.
 
@@ -105,20 +105,83 @@ ERROR 1050 (42S01) at line 14: Table 'ProjectDB' already exists
     link/ether 02:42:d9:69:31:bb brd ff:ff:ff:ff:ff:ff
 7: br-6beb009876a7: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
     link/ether 02:42:d0:a6:c7:18 brd ff:ff:ff:ff:ff:ff
-10: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state DORMANT mode DORMANT group default qlen 1000
-    link/ieee802.11/radiotap 7a:34:32:64:e5:75 brd ff:ff:ff:ff:ff:ff permaddr 8c:55:2b:40:57:9a
+13: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state DORMANT mode DORMANT group default qlen 1000
+    link/ieee802.11/radiotap 5a:63:8d:a9:84:02 brd ff:ff:ff:ff:ff:ff permaddr d0:37:45:97:13:ae
 
 [*] Checking monitor mode interfaces...
 wlan0     IEEE 802.11  Mode:Monitor  Frequency:2.412 GHz  Tx-Power=20 dBm   
 
 [*] Active Wi-Fi connections:
-IN-USE  BSSID  SSID  MODE  CHAN  RATE  SIGNAL  BARS  SECURITY 
+IN-USE  BSSID              SSID                        MODE   CHAN  RATE        SIGNAL  BARS  SECURITY    
+        9C:1C:12:86:71:46  UTS-DeviceNet               Infra  11    195 Mbit/s  82      ▂▄▆█  --          
+        9C:1C:12:86:71:42  UTS-Guest                   Infra  11    195 Mbit/s  82      ▂▄▆█  --          
+        9C:1C:12:86:7F:E3  UTS-Guest                   Infra  1     195 Mbit/s  75      ▂▄▆_  --          
+        9C:1C:12:86:7F:E6  UTS-DeviceNet               Infra  1     195 Mbit/s  75      ▂▄▆_  --          
+        9C:1C:12:86:71:40  UTS-DeviceNetNIVC           Infra  11    195 Mbit/s  75      ▂▄▆_  WPA2        
+        9C:1C:12:86:71:44  UTS-WiFi                    Infra  11    195 Mbit/s  74      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:71:20  UTS-DeviceNetNIVC           Infra  6     195 Mbit/s  72      ▂▄▆_  WPA2        
+        9C:1C:12:86:71:22  UTS-Guest                   Infra  6     195 Mbit/s  72      ▂▄▆_  --          
+        9C:1C:12:86:72:01  eduroam                     Infra  11    195 Mbit/s  72      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:83:A4  UTS-WiFi                    Infra  1     195 Mbit/s  70      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:7F:E0  UTS-DeviceNetNIVC           Infra  1     195 Mbit/s  69      ▂▄▆_  WPA2        
+        9C:1C:12:86:83:A1  eduroam                     Infra  1     195 Mbit/s  69      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:70:60  UTS-DeviceNetNIVC           Infra  6     195 Mbit/s  69      ▂▄▆_  WPA2        
+        9C:1C:12:86:71:26  UTS-DeviceNet               Infra  6     195 Mbit/s  69      ▂▄▆_  --          
+        9C:1C:12:86:70:66  UTS-DeviceNet               Infra  6     195 Mbit/s  69      ▂▄▆_  --          
+        C2:56:D0:2D:1E:15  --                          Infra  6     130 Mbit/s  69      ▂▄▆_  WPA2        
+        9C:1C:12:86:72:04  UTS-WiFi                    Infra  11    195 Mbit/s  69      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:7F:E2  eduroam                     Infra  1     195 Mbit/s  67      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:71:21  eduroam                     Infra  6     195 Mbit/s  67      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:71:24  UTS-WiFi                    Infra  6     195 Mbit/s  65      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:83:A2  UTS-Guest                   Infra  1     195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:5D:60  UTS-DeviceNetNIVC           Infra  1     195 Mbit/s  62      ▂▄▆_  WPA2        
+        9C:1C:12:86:5D:66  UTS-DeviceNet               Infra  1     195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:83:A6  UTS-DeviceNet               Infra  1     195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:5D:62  UTS-Guest                   Infra  1     195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:70:63  UTS-Guest                   Infra  6     195 Mbit/s  62      ▂▄▆_  --          
+        34:98:B5:AE:13:B0  HAI_Office                  Infra  8     270 Mbit/s  62      ▂▄▆_  WPA2        
+        9C:1C:12:86:72:00  UTS-DeviceNetNIVC           Infra  11    195 Mbit/s  62      ▂▄▆_  WPA2        
+        9C:1C:12:86:72:02  UTS-Guest                   Infra  11    195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:72:06  UTS-DeviceNet               Infra  11    195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:55:C6  UTS-DeviceNet               Infra  11    195 Mbit/s  62      ▂▄▆_  --          
+        9C:1C:12:86:83:A0  UTS-DeviceNetNIVC           Infra  1     195 Mbit/s  59      ▂▄▆_  WPA2        
+        9C:1C:12:86:71:06  UTS-DeviceNet               Infra  1     195 Mbit/s  59      ▂▄▆_  --          
+        9C:1C:12:86:87:04  UTS-DeviceNetNIVC           Infra  6     195 Mbit/s  59      ▂▄▆_  WPA2        
+        9C:1C:12:86:87:02  UTS-Guest                   Infra  6     195 Mbit/s  59      ▂▄▆_  --          
+        9C:1C:12:86:5E:A1  eduroam                     Infra  6     195 Mbit/s  57      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:71:00  UTS-DeviceNetNIVC           Infra  1     195 Mbit/s  55      ▂▄__  WPA2        
+        9C:1C:12:86:71:02  UTS-Guest                   Infra  1     195 Mbit/s  55      ▂▄__  --          
+        9C:1C:12:86:7D:42  UTS-Guest                   Infra  1     195 Mbit/s  55      ▂▄__  --          
+        9C:1C:12:86:8B:66  UTS-DeviceNet               Infra  1     195 Mbit/s  55      ▂▄__  --          
+        9C:1C:12:86:87:03  UTS-DeviceNet               Infra  6     195 Mbit/s  55      ▂▄__  --          
+        B4:5D:50:75:81:02  UTS-Guest                   Infra  11    195 Mbit/s  55      ▂▄__  --          
+        9C:1C:12:86:55:C0  UTS-DeviceNetNIVC           Infra  11    195 Mbit/s  55      ▂▄__  WPA2        
+        FA:25:64:0C:B4:D0  Galaxy S20+ 5G59f9          Infra  11    130 Mbit/s  55      ▂▄__  WPA2        
+        9C:1C:12:86:7D:46  UTS-DeviceNet               Infra  1     195 Mbit/s  52      ▂▄__  --          
+        9C:1C:12:86:7D:44  UTS-WiFi                    Infra  1     195 Mbit/s  52      ▂▄__  WPA2 802.1X 
+        9C:1C:12:86:5E:A6  UTS-DeviceNet               Infra  6     195 Mbit/s  52      ▂▄__  --          
+        B4:5D:50:75:81:04  UTS-DeviceNetNIVC           Infra  11    195 Mbit/s  52      ▂▄__  WPA2        
+        B4:5D:50:75:81:00  UTS-DeviceNet               Infra  11    195 Mbit/s  52      ▂▄__  --          
+        9C:1C:12:86:55:C2  UTS-Guest                   Infra  11    195 Mbit/s  52      ▂▄__  --          
+        B6:E6:2D:45:EC:9E  Smart Dmx Interface 194657  Infra  11    54 Mbit/s   52      ▂▄__  WPA1 WPA2   
+        9C:1C:12:86:83:C0  UTS-DeviceNetNIVC           Infra  1     195 Mbit/s  49      ▂▄__  WPA2        
+        9C:1C:12:86:5E:A2  UTS-Guest                   Infra  6     195 Mbit/s  49      ▂▄__  --          
+        42:F3:CC:D8:BD:C2  Optus_B628_BDD8             Infra  9     270 Mbit/s  49      ▂▄__  WPA2 WPA3   
+        9C:1C:12:86:86:A4  UTS-DeviceNetNIVC           Infra  11    195 Mbit/s  49      ▂▄__  WPA2        
+        9C:1C:12:86:66:66  UTS-DeviceNet               Infra  1     195 Mbit/s  45      ▂▄__  --          
+        9C:1C:12:86:6C:86  UTS-DeviceNet               Infra  6     195 Mbit/s  45      ▂▄__  --          
+        9C:1C:12:86:7E:46  UTS-DeviceNet               Infra  11    195 Mbit/s  45      ▂▄__  --          
+        9C:1C:12:86:59:00  UTS-DeviceNetNIVC           Infra  11    195 Mbit/s  45      ▂▄__  WPA2        
+        A6:82:D5:18:8D:0C  AndroidAPae46               Infra  11    130 Mbit/s  45      ▂▄__  WPA2        
+        9C:1C:12:86:69:81  eduroam                     Infra  6     195 Mbit/s  42      ▂▄__  WPA2 802.1X 
+        9C:1C:12:86:63:C1  eduroam                     Infra  1     195 Mbit/s  40      ▂▄__  WPA2 802.1X 
+        9C:1C:12:86:59:04  UTS-Guest                   Infra  11    195 Mbit/s  39      ▂▄__  --          
 
-===== Initialization completed at Wed Oct 15 10:07:03 PM EDT 2025 =====
+===== Initialization completed at Thu Oct 16 12:32:39 AM EDT 2025 =====
 
 
 [*] Starting web UI: ./app/app.py in background...
-[+] Web UI started successfully (PID: 9078)
-[+] Scanner started successfully (PID: 9081)
+[+] Web UI started successfully (PID: 118312)
+[+] Scanner started successfully (PID: 118315)
 
 [*] Running Python script: ./app/app.py
