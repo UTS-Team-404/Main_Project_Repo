@@ -1,13 +1,32 @@
-#!../.venv/bin/python3
+#pip install folium
+#pip install pywebview[GTK]
+
 
 
 import os
 import folium
 from folium.plugins import HeatMap
 import csv
+import mysql.connector
 import webview
+from datetime import datetime
+
+DATABASE1 = 'team404.sql'
+# Database configuration
+DATABASE = {
+    'host': 'localhost',
+    'port': 3306,
+    'database': 'team404',
+    'user': 'team404user',
+    'password': 'pass',
+    'charset': 'utf8mb4',
+    'collation': 'utf8mb4_unicode_ci'
+}
 
 
+def get_connection():
+    """Return a new database connection."""
+    return mysql.connector.connect(**DATABASE) 
 
 class HeatmapGenerator:
     def __init__(self, data_file='data.csv'):
@@ -45,7 +64,7 @@ class HeatmapGenerator:
         avg_lon = sum(d[1] for d in data) / len(data)
 
         # Create a Folium map centered on the average lat/lon
-        m = folium.Map(location=[avg_lat, avg_lon], zoom_start=13)
+        m = folium.Map(location=[avg_lat, avg_lon], zoom_start=19)
 
         # Prepare data for the heatmap, adjusting signal strength for visibility
         norm_data = [[d[0], d[1], max(0, 100 + d[2])] for d in data]
@@ -58,28 +77,54 @@ class HeatmapGenerator:
         return output_file
 
 class HeatmapApp:
+
+    def generate_external_heatmap_from_sql(self):
+        """Generates a heatmap using gpsLat, gpsLong, and strength from the SQL DB."""
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        query = """
+        SELECT gpsLat, gpsLong, strength
+        FROM IngestDB
+        WHERE gpsLat IS NOT NULL AND gpsLong IS NOT NULL;
+        """
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        conn.close()
+
+        if not rows:
+            return {"success": False, "message": "No GPS data found."}
+
+        heat_data = []
+        for row in rows:
+            try:
+                lat = float(row[0])
+                lon = float(row[1])
+                strength = float(row[2])
+                heat_data.append([lat, lon, max(0, 100 + strength)])  # normalize
+            except (TypeError, ValueError):
+                continue
+
+        if not heat_data:
+            return {"success": False, "message": "No valid GPS data available."}
+
+        avg_lat = sum(d[0] for d in heat_data) / len(heat_data)
+        avg_lon = sum(d[1] for d in heat_data) / len(heat_data)
+
+        m = folium.Map(location=[avg_lat, avg_lon], zoom_start=19)
+        HeatMap(heat_data).add_to(m)
+
+        output_file = 'external_heatmap.html'
+        m.save(output_file)
+
+        return {"success": True, "file": output_file}
+
+
+
     def __init__(self):
         self.generator = HeatmapGenerator()
         self.wifi_data = self.read_wifi_data()
 
-    def read_wifi_data(self):
-        """Reads WiFi data from the CSV file."""
-        wifi_data = []
-        try:
-            with open('wifi_data.csv', 'r') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
-                    wifi_data.append({
-                        'ssid': row['SSID'],
-                        'signal_strength': row['Signal Strength'],
-                        'channel': row['Channel'],
-                        'encryption': row['Encryption']
-                    })
-        except FileNotFoundError:
-            print("wifi_data.csv file not found.")
-        except Exception as e:
-            print(f"Error reading wifi_data.csv: {e}")
-        return wifi_data
 
     def run(self):
         """Run the app and initialize the first heatmap."""
@@ -96,15 +141,117 @@ class HeatmapApp:
         self.generator.create_heatmap()
         print("Heatmap regenerated!")
 
-    def get_wifi_data(self):
-        """Returns WiFi data to the frontend."""
-        print("e")
-        return self.wifi_data
+    
 
     def on_wifi_click(self, ssid):
-        """Handle WiFi button click."""
-        print(f"Connecting to {ssid}...")  # Here you could add more logic to connect to the WiFi
+        """Return full analytics data for selected SSID from SQL database."""
+        conn = get_connection()
+        cursor = conn.cursor()
 
+        query = """
+        SELECT ID, projectID, captureTime, srcMac, dstMac, SSID, encType,
+            authMode, gpsLat, gpsLong, strength, contentLength,
+            typeExternal, typeInternal, srcIP, dstIP, srcPort,
+            dstPort, sniffType
+        FROM IngestDB
+        WHERE SSID = %s
+        ORDER BY captureTime DESC
+        LIMIT 1;
+        """
+        cursor.execute(query, (ssid,))
+        rows = cursor.fetchall()
+        conn.close()
+
+        # Column names must match the SELECT statement
+        column_names = [
+            "ID", "projectID", "captureTime", "srcMac", "dstMac", "SSID", "encType",
+            "authMode", "gpsLat", "gpsLong", "strength", "contentLength",
+            "typeExternal", "typeInternal", "srcIP", "dstIP", "srcPort",
+            "dstPort", "sniffType"
+        ]
+
+        result = []
+        for row in rows:
+            record = dict(zip(column_names, row))
+
+            # Convert datetime to string (ISO format)
+            if isinstance(record["captureTime"], datetime):
+                record["captureTime"] = record["captureTime"].isoformat()
+
+            result.append(record)
+
+        return result
+
+
+
+    def read_wifi_data(self):
+        """Fetch Wi-Fi data from SQL database."""
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        # Modify the query to match your table structure
+        query = """
+            SELECT 
+                ssid,
+                COUNT(*) AS ssid_count
+            FROM IngestDB
+            WHERE projectID = (
+                SELECT MAX(projectID) FROM IngestDB
+            )
+            GROUP BY ssid
+            ORDER BY ssid_count DESC;
+        """
+        cursor.execute(query)
+        wifi_data = cursor.fetchall()
+        print(wifi_data)
+
+        conn.close()
+
+        # Map the fetched data into a list of dictionaries
+        wifi_data_dict = [
+            {"ssid": row[0], "strength": row[1]}
+            for row in wifi_data
+        ]
+        print("Fetched WiFi Data:", wifi_data_dict)
+        return wifi_data_dict
+    
+    def read_wifi_dataInternal(self):
+        """Fetch Wi-Fi data from SQL database."""
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        # Modify the query to match your table structure
+        query = """
+            SELECT 
+                ssid,
+                COUNT(*) AS ssid_count
+            FROM IngestDB
+            WHERE projectID = (
+                SELECT MAX(projectID) FROM IngestDB
+            )
+            GROUP BY ssid
+            ORDER BY ssid_count DESC;
+        """
+        cursor.execute(query)
+        wifi_data = cursor.fetchall()
+        print(wifi_data)
+
+        conn.close()
+
+        # Map the fetched data into a list of dictionaries
+        wifi_data_dict = [
+            {"ssid": row[0], "count": row[1]}
+            for row in wifi_data
+        ]
+        print("Fetched WiFi Data:", wifi_data_dict)
+        return wifi_data_dict
+
+    def get_wifiIn_data(self):
+        return self.read_wifi_dataInternal()    
+
+    def get_wifi_data(self):
+        """Returns WiFi data to the frontend."""
+        return self.read_wifi_data()
 
 def main():
     # Run HeatmapApp on startup
@@ -114,5 +261,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
