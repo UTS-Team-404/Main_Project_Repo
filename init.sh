@@ -13,27 +13,13 @@
 #   - Logs to stdout and a logfile (init.log)
 # ========================================
 
-VENV_DIR=".venv"
+VENV_DIR="/etc/.venv"
 LOGFILE="./initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
 PYTHON_SCRIPT="./app/app.py"       # <-- change this to your script
 WEBPYTHON_SCRIPT= "./web/Integrated-Web-UI-main/web/app.py"
 SQL_FILE="setup.sql"          # <-- change this to your SQL setup file
-REQUIREMENTS_FILE="requirements.txt"
+INTERFACE="wlan1"
 
-APT_PACKAGES=(
-    python3-gi
-    python3-gi-cairo
-    gir1.2-gtk-3.0
-    libgirepository1.0-dev
-    libcairo2-dev
-    pkg-config
-    python3-dev
-    libgtk-3-dev
-    build-essential
-    libwebkit2gtk-4.1-dev
-    gir1.2-webkit2-4.1
-    libopenblas-dev
-)
 
 # Create or clear log
 : > "$LOGFILE"
@@ -54,15 +40,6 @@ fi
 log "[+] Running with root privileges."
 
 
-log "\n[*] Installing required system packages..."
-apt install -y "${APT_PACKAGES[@]}" 2>&1 | tee -a "$LOGFILE"
-if [ $? -eq 0 ]; then
-    log "[+] System packages installed successfully."
-else
-    log "[X] Some packages failed to install. Check log for details."
-fi
-
-
 # --- Find base user (who invoked sudo) ---
 BASE_USER=${SUDO_USER:-$USER}
 BASE_HOME=$(eval echo "~$BASE_USER")
@@ -70,59 +47,10 @@ BASE_HOME=$(eval echo "~$BASE_USER")
 log "[*] Script executed by: $BASE_USER"
 
 
-# --- Check for Python 3 ---
-if command -v python3 &>/dev/null; then
-    PY_VERSION=$(python3 -V 2>&1)
-    log "[+] Python found: $PY_VERSION"
-else
-    log "[!] Python3 is not installed. Please install it and re-run this script."
-    exit 1
-fi
-
-# --- Check Python version compatibility ---
-REQUIRED_VERSION="3.8"
-if python3 -c "import sys; exit(0 if sys.version_info >= (3,8) else 1)"; then
-    log "[+] Python version >= $REQUIRED_VERSION OK"
-else
-    log "[!] Python version too old. Please upgrade to $REQUIRED_VERSION+"
-    exit 1
-fi
-
-# --- Check for venv module ---
-if ! python3 -m venv --help &>/dev/null; then
-    log "[!] The 'venv' module is not available in your Python installation."
-    exit 1
-fi
-
-# --- Create virtual environment if missing ---
-if [ ! -d "$VENV_DIR" ]; then
-    log "[*] Creating Python virtual environment in $VENV_DIR ..."
-    python3 -m venv "$VENV_DIR"
-    if [ $? -ne 0 ]; then
-        log "[X] Failed to create virtual environment."
-        exit 1
-    fi
-else
-    log "[+] Virtual environment already exists ($VENV_DIR)"
-fi
-
 # --- Activate the venv ---
 log "[*] Activating virtual environment..."
 # shellcheck disable=SC1091
 source "$VENV_DIR/bin/activate"
-
-# --- Upgrade pip ---
-log "[*] Upgrading pip inside venv..."
-pip install --upgrade pip 2>&1 | tee -a "$LOGFILE"
-
-# --- Install requirements ---
-if [ -f "$REQUIREMENTS_FILE" ]; then
-    log "[*] Installing Python dependencies from $REQUIREMENTS_FILE ..."
-    pip install -r "$REQUIREMENTS_FILE" 2>&1 | tee -a "$LOGFILE"
-else
-    log "[!] No requirements.txt found — skipping dependency check."
-fi
-
 
 # --- Check MySQL installation ---
 if command -v mysql &>/dev/null; then
@@ -179,7 +107,7 @@ if [ -f "$PYTHON_SCRIPT" ]; then
     sudo ./.venv/bin/python3 web/Integrated-Web-UI-main/web/app.py & 
     WEB_PID=$!
     log "[+] Web UI started successfully (PID: $WEB_PID)"
-    sudo ./.venv/bin/python3 scan/scan.py -i wlan0 & 
+    sudo ./.venv/bin/python3 scan/scan.py -i $INTERFACE & 
     SCAN_PID=$!
     log "[+] Scanner started successfully (PID: $SCAN_PID)"
     log "\n[*] Running Python script: $PYTHON_SCRIPT"

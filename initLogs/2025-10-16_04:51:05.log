@@ -1,0 +1,52 @@
+
+===== Initialization started at Thu Oct 16 04:51:05 AM EDT 2025 =====
+
+[+] Running with root privileges.
+[*] Script executed by: kali
+[*] Activating virtual environment...
+[+] MySQL client found.
+[+] MySQL service is running.
+[*] Running SQL setup from setup.sql ...
+--------------
+CREATE TABLE ProjectDB (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    startTime DATETIME NOT NULL,
+    stopTime DATETIME,
+    projectType VARCHAR(20) CHECK (projectType IN ('sniff_external', 'sniff_internal', 'heatmap'))
+)
+--------------
+
+ERROR 1050 (42S01) at line 14: Table 'ProjectDB' already exists
+
+[*] Checking network interfaces...
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether 00:0c:29:7b:e9:c4 brd ff:ff:ff:ff:ff:ff
+3: br-6beb009876a7: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:21:18:44:c6 brd ff:ff:ff:ff:ff:ff
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:d6:44:ed:a8 brd ff:ff:ff:ff:ff:ff
+5: br-034f3551f963: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:3f:1a:b6:68 brd ff:ff:ff:ff:ff:ff
+6: br-22f1c1128960: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:6d:b0:77:c1 brd ff:ff:ff:ff:ff:ff
+7: br-6ac09050e671: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether 02:42:f3:b5:f0:24 brd ff:ff:ff:ff:ff:ff
+13: wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DORMANT group default qlen 1000
+    link/ether 0a:ff:65:3e:72:77 brd ff:ff:ff:ff:ff:ff permaddr 8c:55:2b:40:57:9a
+
+[*] Checking monitor mode interfaces...
+wlan0     IEEE 802.11  ESSID:off/any  
+
+[*] Active Wi-Fi connections:
+IN-USE  BSSID  SSID  MODE  CHAN  RATE  SIGNAL  BARS  SECURITY 
+
+===== Initialization completed at Thu Oct 16 04:51:05 AM EDT 2025 =====
+
+
+[*] Starting web UI: ./app/app.py in background...
+[+] Web UI started successfully (PID: 23111)
+[+] Scanner started successfully (PID: 23114)
+
+[*] Running Python script: ./app/app.py
