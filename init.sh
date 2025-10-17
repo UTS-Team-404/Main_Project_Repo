@@ -104,14 +104,14 @@ log "\n===== Initialization completed at $(date) =====\n"
 # --- Run the Python script ---
 if [ -f "$PYTHON_SCRIPT" ]; then
     log "\n[*] Starting web UI: $PYTHON_SCRIPT in background..."
-    sudo ./.venv/bin/python3 web/Integrated-Web-UI-main/web/app.py & 
+    sudo $VENV_DIR/bin/python3 web/Integrated-Web-UI-main/web/app.py & 
     WEB_PID=$!
     log "[+] Web UI started successfully (PID: $WEB_PID)"
-    sudo ./.venv/bin/python3 scan/scan.py -i $INTERFACE & 
+    sudo $VENV_DIR/bin/python3 scan/scan.py -i $INTERFACE & 
     SCAN_PID=$!
     log "[+] Scanner started successfully (PID: $SCAN_PID)"
     log "\n[*] Running Python script: $PYTHON_SCRIPT"
-    sudo ./.venv/bin/python3 "$PYTHON_SCRIPT" --no-sandbox 2>&1
+    sudo $VENV_DIR/bin/python3 "$PYTHON_SCRIPT" --no-sandbox 2>&1
 else
     log "[!] Python script '$PYTHON_SCRIPT' not found. Skipping execution."
 fi
