@@ -1,0 +1,259 @@
+
+===== Initialization started at Mon 06 Oct 2025 16:25:31 AEDT =====
+
+[+] Running with root privileges.
+
+[*] Installing required system packages...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+python3-gi is already the newest version (3.48.2-1).
+python3-gi-cairo is already the newest version (3.48.2-1).
+gir1.2-gtk-3.0 is already the newest version (3.24.41-4ubuntu1.3).
+libcairo2-dev is already the newest version (1.18.0-3build1).
+libcairo2-dev set to manually installed.
+pkg-config is already the newest version (1.8.1-2build1).
+python3-dev is already the newest version (3.12.3-0ubuntu2).
+libgtk-3-dev is already the newest version (3.24.41-4ubuntu1.3).
+build-essential is already the newest version (12.10ubuntu1).
+gir1.2-webkit2-4.1 is already the newest version (2.48.5-0ubuntu0.24.04.1).
+The following packages were automatically installed and are no longer required:
+  linux-headers-6.8.0-62 linux-headers-6.8.0-62-generic
+  linux-image-6.8.0-62-generic linux-modules-6.8.0-62-generic
+  linux-modules-extra-6.8.0-62-generic linux-tools-6.8.0-62
+  linux-tools-6.8.0-62-generic
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  gir1.2-girepository-2.0-dev gobject-introspection gobject-introspection-bin
+  libgirepository-1.0-dev libjavascriptcoregtk-4.1-dev libnghttp2-dev
+  libpsl-dev libsoup-3.0-dev libsqlite3-0 libsqlite3-dev
+  libsysprof-capture-4-dev sqlite3
+Suggested packages:
+  libgirepository1.0-doc libnghttp2-doc libsoup-3.0-doc sqlite3-doc
+The following NEW packages will be installed:
+  gir1.2-girepository-2.0-dev gobject-introspection gobject-introspection-bin
+  libgirepository-1.0-dev libgirepository1.0-dev libjavascriptcoregtk-4.1-dev
+  libnghttp2-dev libpsl-dev libsoup-3.0-dev libsqlite3-dev
+  libsysprof-capture-4-dev libwebkit2gtk-4.1-dev
+The following packages will be upgraded:
+  libsqlite3-0 sqlite3
+2 to upgrade, 12 to newly install, 0 to remove and 99 not to upgrade.
+Need to get 2,908 kB of archives.
+After this operation, 14.7 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 sqlite3 amd64 3.45.1-1ubuntu2.5 [144 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsqlite3-0 amd64 3.45.1-1ubuntu2.5 [701 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 gir1.2-girepository-2.0-dev amd64 1.80.1-1 [41.5 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble/main amd64 gobject-introspection-bin amd64 1.80.1-1 [254 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble/main amd64 gobject-introspection amd64 1.80.1-1 [105 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 libgirepository-1.0-dev amd64 1.80.1-1 [28.5 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 libgirepository1.0-dev amd64 1.80.1-1 [17.0 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 libjavascriptcoregtk-4.1-dev amd64 2.48.5-0ubuntu0.24.04.1 [69.6 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnghttp2-dev amd64 1.59.0-1ubuntu0.2 [116 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 libpsl-dev amd64 0.21.2-1.1build1 [76.4 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsqlite3-dev amd64 3.45.1-1ubuntu2.5 [911 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/universe amd64 libsysprof-capture-4-dev amd64 46.0-1build1 [51.0 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 libsoup-3.0-dev amd64 3.4.4-5ubuntu0.5 [105 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 libwebkit2gtk-4.1-dev amd64 2.48.5-0ubuntu0.24.04.1 [289 kB]
+Fetched 2,908 kB in 16s (184 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 698371 files and directories currently installed.)
+Preparing to unpack .../00-sqlite3_3.45.1-1ubuntu2.5_amd64.deb ...
+Unpacking sqlite3 (3.45.1-1ubuntu2.5) over (3.45.1-1ubuntu2.4) ...
+Preparing to unpack .../01-libsqlite3-0_3.45.1-1ubuntu2.5_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.45.1-1ubuntu2.5) over (3.45.1-1ubuntu2.4) ...
+Selecting previously unselected package gir1.2-girepository-2.0-dev:amd64.
+Preparing to unpack .../02-gir1.2-girepository-2.0-dev_1.80.1-1_amd64.deb ...
+Unpacking gir1.2-girepository-2.0-dev:amd64 (1.80.1-1) ...
+Selecting previously unselected package gobject-introspection-bin.
+Preparing to unpack .../03-gobject-introspection-bin_1.80.1-1_amd64.deb ...
+Unpacking gobject-introspection-bin (1.80.1-1) ...
+Selecting previously unselected package gobject-introspection:amd64.
+Preparing to unpack .../04-gobject-introspection_1.80.1-1_amd64.deb ...
+Unpacking gobject-introspection:amd64 (1.80.1-1) ...
+Selecting previously unselected package libgirepository-1.0-dev:amd64.
+Preparing to unpack .../05-libgirepository-1.0-dev_1.80.1-1_amd64.deb ...
+Unpacking libgirepository-1.0-dev:amd64 (1.80.1-1) ...
+Selecting previously unselected package libgirepository1.0-dev.
+Preparing to unpack .../06-libgirepository1.0-dev_1.80.1-1_amd64.deb ...
+Unpacking libgirepository1.0-dev (1.80.1-1) ...
+Selecting previously unselected package libjavascriptcoregtk-4.1-dev:amd64.
+Preparing to unpack .../07-libjavascriptcoregtk-4.1-dev_2.48.5-0ubuntu0.24.04.1_amd64.deb ...
+Unpacking libjavascriptcoregtk-4.1-dev:amd64 (2.48.5-0ubuntu0.24.04.1) ...
+Selecting previously unselected package libnghttp2-dev:amd64.
+Preparing to unpack .../08-libnghttp2-dev_1.59.0-1ubuntu0.2_amd64.deb ...
+Unpacking libnghttp2-dev:amd64 (1.59.0-1ubuntu0.2) ...
+Selecting previously unselected package libpsl-dev:amd64.
+Preparing to unpack .../09-libpsl-dev_0.21.2-1.1build1_amd64.deb ...
+Unpacking libpsl-dev:amd64 (0.21.2-1.1build1) ...
+Selecting previously unselected package libsqlite3-dev:amd64.
+Preparing to unpack .../10-libsqlite3-dev_3.45.1-1ubuntu2.5_amd64.deb ...
+Unpacking libsqlite3-dev:amd64 (3.45.1-1ubuntu2.5) ...
+Selecting previously unselected package libsysprof-capture-4-dev:amd64.
+Preparing to unpack .../11-libsysprof-capture-4-dev_46.0-1build1_amd64.deb ...
+Unpacking libsysprof-capture-4-dev:amd64 (46.0-1build1) ...
+Selecting previously unselected package libsoup-3.0-dev:amd64.
+Preparing to unpack .../12-libsoup-3.0-dev_3.4.4-5ubuntu0.5_amd64.deb ...
+Unpacking libsoup-3.0-dev:amd64 (3.4.4-5ubuntu0.5) ...
+Selecting previously unselected package libwebkit2gtk-4.1-dev.
+Preparing to unpack .../13-libwebkit2gtk-4.1-dev_2.48.5-0ubuntu0.24.04.1_amd64.deb ...
+Unpacking libwebkit2gtk-4.1-dev (2.48.5-0ubuntu0.24.04.1) ...
+Setting up libnghttp2-dev:amd64 (1.59.0-1ubuntu0.2) ...
+Setting up gobject-introspection-bin (1.80.1-1) ...
+Setting up libsqlite3-0:amd64 (3.45.1-1ubuntu2.5) ...
+Setting up gobject-introspection:amd64 (1.80.1-1) ...
+Setting up gir1.2-girepository-2.0-dev:amd64 (1.80.1-1) ...
+Setting up libpsl-dev:amd64 (0.21.2-1.1build1) ...
+Setting up libsysprof-capture-4-dev:amd64 (46.0-1build1) ...
+Setting up libsqlite3-dev:amd64 (3.45.1-1ubuntu2.5) ...
+Setting up libgirepository-1.0-dev:amd64 (1.80.1-1) ...
+Setting up sqlite3 (3.45.1-1ubuntu2.5) ...
+Setting up libjavascriptcoregtk-4.1-dev:amd64 (2.48.5-0ubuntu0.24.04.1) ...
+Setting up libsoup-3.0-dev:amd64 (3.4.4-5ubuntu0.5) ...
+Setting up libgirepository1.0-dev (1.80.1-1) ...
+Setting up libwebkit2gtk-4.1-dev (2.48.5-0ubuntu0.24.04.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+[+] System packages installed successfully.
+[*] Script executed by: null
+[+] Python found: Python 3.12.3
+[+] Python version >= 3.8 OK
+[*] Creating Python virtual environment in .venv ...
+[*] Activating virtual environment...
+[*] Upgrading pip inside venv...
+Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Downloading pip-25.2-py3-none-any.whl.metadata (4.7 kB)
+Downloading pip-25.2-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 5.5 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed pip-25.2
+[*] Installing Python dependencies from requirements.txt ...
+Collecting scapy (from -r requirements.txt (line 1))
+  Downloading scapy-2.6.1-py3-none-any.whl.metadata (5.6 kB)
+Collecting mysql-connector-python (from -r requirements.txt (line 2))
+  Downloading mysql_connector_python-9.4.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (7.5 kB)
+Collecting pandas (from -r requirements.txt (line 3))
+  Downloading pandas-2.3.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+Collecting reportlab (from -r requirements.txt (line 4))
+  Downloading reportlab-4.4.4-py3-none-any.whl.metadata (1.7 kB)
+Collecting folium (from -r requirements.txt (line 6))
+  Downloading folium-0.20.0-py2.py3-none-any.whl.metadata (4.2 kB)
+Collecting pywebview[GTK] (from -r requirements.txt (line 5))
+  Downloading pywebview-6.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting numpy>=1.26.0 (from pandas->-r requirements.txt (line 3))
+  Downloading numpy-2.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+Collecting python-dateutil>=2.8.2 (from pandas->-r requirements.txt (line 3))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pytz>=2020.1 (from pandas->-r requirements.txt (line 3))
+  Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.7 (from pandas->-r requirements.txt (line 3))
+  Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting pillow>=9.0.0 (from reportlab->-r requirements.txt (line 4))
+  Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Collecting charset-normalizer (from reportlab->-r requirements.txt (line 4))
+  Downloading charset_normalizer-3.4.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (36 kB)
+Collecting proxy_tools (from pywebview[GTK]->-r requirements.txt (line 5))
+  Downloading proxy_tools-0.1.0.tar.gz (3.0 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting bottle (from pywebview[GTK]->-r requirements.txt (line 5))
+  Downloading bottle-0.13.4-py2.py3-none-any.whl.metadata (1.6 kB)
+Collecting typing_extensions (from pywebview[GTK]->-r requirements.txt (line 5))
+  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting PyGObject==3.50.0 (from pywebview[GTK]->-r requirements.txt (line 5))
+  Downloading pygobject-3.50.0.tar.gz (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 5.7 MB/s  0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting PyGObject-stubs (from pywebview[GTK]->-r requirements.txt (line 5))
+  Downloading pygobject_stubs-2.13.0.tar.gz (870 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 870.2/870.2 kB 5.8 MB/s  0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting pycairo>=1.16 (from PyGObject==3.50.0->pywebview[GTK]->-r requirements.txt (line 5))
+  Using cached pycairo-1.28.0-cp312-cp312-linux_x86_64.whl
+Collecting branca>=0.6.0 (from folium->-r requirements.txt (line 6))
+  Downloading branca-0.8.1-py3-none-any.whl.metadata (1.5 kB)
+Collecting jinja2>=2.9 (from folium->-r requirements.txt (line 6))
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting requests (from folium->-r requirements.txt (line 6))
+  Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting xyzservices (from folium->-r requirements.txt (line 6))
+  Downloading xyzservices-2025.4.0-py3-none-any.whl.metadata (4.3 kB)
+Collecting MarkupSafe>=2.0 (from jinja2>=2.9->folium->-r requirements.txt (line 6))
+  Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas->-r requirements.txt (line 3))
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting idna<4,>=2.5 (from requests->folium->-r requirements.txt (line 6))
+  Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting urllib3<3,>=1.21.1 (from requests->folium->-r requirements.txt (line 6))
+  Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests->folium->-r requirements.txt (line 6))
+  Downloading certifi-2025.10.5-py3-none-any.whl.metadata (2.5 kB)
+Downloading scapy-2.6.1-py3-none-any.whl (2.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 8.4 MB/s  0:00:00
+Downloading mysql_connector_python-9.4.0-cp312-cp312-manylinux_2_28_x86_64.whl (33.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 33.9/33.9 MB 7.3 MB/s  0:00:04
+Downloading pandas-2.3.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.4/12.4 MB 8.6 MB/s  0:00:01
+Downloading reportlab-4.4.4-py3-none-any.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 10.3 MB/s  0:00:00
+Downloading pywebview-6.0-py3-none-any.whl (508 kB)
+Downloading folium-0.20.0-py2.py3-none-any.whl (113 kB)
+Downloading branca-0.8.1-py3-none-any.whl (26 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading numpy-2.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 8.5 MB/s  0:00:01
+Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 8.5 MB/s  0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Downloading bottle-0.13.4-py2.py3-none-any.whl (103 kB)
+Downloading charset_normalizer-3.4.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (151 kB)
+Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+Downloading idna-3.10-py3-none-any.whl (70 kB)
+Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+Downloading certifi-2025.10.5-py3-none-any.whl (163 kB)
+Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading xyzservices-2025.4.0-py3-none-any.whl (90 kB)
+Building wheels for collected packages: PyGObject, proxy_tools, PyGObject-stubs
+  Building wheel for PyGObject (pyproject.toml): started
+  Building wheel for PyGObject (pyproject.toml): finished with status 'done'
+  Created wheel for PyGObject: filename=pygobject-3.50.0-cp312-cp312-linux_x86_64.whl size=272934 sha256=0b16165dfd411a9b3bc14c2c56e09f83df8b99a5fbc402634b3c67988443ee45
+  Stored in directory: /root/.cache/pip/wheels/72/ab/6c/f52201a907017c93d24db06950a150312521e5e210c7dfea12
+  Building wheel for proxy_tools (pyproject.toml): started
+  Building wheel for proxy_tools (pyproject.toml): finished with status 'done'
+  Created wheel for proxy_tools: filename=proxy_tools-0.1.0-py3-none-any.whl size=2936 sha256=ba1701fbdfd6801c2690b8c4b660332c74787a40c0f999b00c45fd19c95786ef
+  Stored in directory: /root/.cache/pip/wheels/07/37/12/f3390260c831aa68c3835d6ec2e10d8da094b5fc0ac32feb14
+  Building wheel for PyGObject-stubs (pyproject.toml): started
+  Building wheel for PyGObject-stubs (pyproject.toml): finished with status 'done'
+  Created wheel for PyGObject-stubs: filename=pygobject_stubs-2.13.0-py3-none-any.whl size=1084568 sha256=09053824b5362327fc190408fd849fe6581b6819b413a0ad7dcac78e46423fbc
+  Stored in directory: /root/.cache/pip/wheels/b7/6f/d6/42e5ee9bf533e40d3e1c294f1293d1b665cc2392ccae7bd7ec
+Successfully built PyGObject proxy_tools PyGObject-stubs
+Installing collected packages: pytz, proxy_tools, bottle, xyzservices, urllib3, tzdata, typing_extensions, six, scapy, PyGObject-stubs, pycairo, pillow, numpy, mysql-connector-python, MarkupSafe, idna, charset-normalizer, certifi, requests, reportlab, pywebview, python-dateutil, PyGObject, jinja2, pandas, branca, folium
+
+Successfully installed MarkupSafe-3.0.3 PyGObject-3.50.0 PyGObject-stubs-2.13.0 bottle-0.13.4 branca-0.8.1 certifi-2025.10.5 charset-normalizer-3.4.3 folium-0.20.0 idna-3.10 jinja2-3.1.6 mysql-connector-python-9.4.0 numpy-2.3.3 pandas-2.3.3 pillow-11.3.0 proxy_tools-0.1.0 pycairo-1.28.0 python-dateutil-2.9.0.post0 pytz-2025.2 pywebview-6.0 reportlab-4.4.4 requests-2.32.5 scapy-2.6.1 six-1.17.0 typing_extensions-4.15.0 tzdata-2025.2 urllib3-2.5.0 xyzservices-2025.4.0
+[!] MySQL is not installed. Please install it (apt install mysql-server).

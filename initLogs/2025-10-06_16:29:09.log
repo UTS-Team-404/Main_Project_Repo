@@ -1,0 +1,215 @@
+
+===== Initialization started at Mon 06 Oct 2025 16:29:09 AEDT =====
+
+[+] Running with root privileges.
+
+[*] Installing required system packages...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+python3-gi is already the newest version (3.48.2-1).
+python3-gi-cairo is already the newest version (3.48.2-1).
+gir1.2-gtk-3.0 is already the newest version (3.24.41-4ubuntu1.3).
+libgirepository1.0-dev is already the newest version (1.80.1-1).
+libcairo2-dev is already the newest version (1.18.0-3build1).
+pkg-config is already the newest version (1.8.1-2build1).
+python3-dev is already the newest version (3.12.3-0ubuntu2).
+libgtk-3-dev is already the newest version (3.24.41-4ubuntu1.3).
+build-essential is already the newest version (12.10ubuntu1).
+libwebkit2gtk-4.1-dev is already the newest version (2.48.5-0ubuntu0.24.04.1).
+gir1.2-webkit2-4.1 is already the newest version (2.48.5-0ubuntu0.24.04.1).
+The following packages were automatically installed and are no longer required:
+  linux-headers-6.8.0-62 linux-headers-6.8.0-62-generic
+  linux-image-6.8.0-62-generic linux-modules-6.8.0-62-generic
+  linux-modules-extra-6.8.0-62-generic linux-tools-6.8.0-62
+  linux-tools-6.8.0-62-generic
+Use 'sudo apt autoremove' to remove them.
+0 to upgrade, 0 to newly install, 0 to remove and 99 not to upgrade.
+[+] System packages installed successfully.
+[*] Script executed by: null
+[+] Python found: Python 3.12.3
+[+] Python version >= 3.8 OK
+[+] Virtual environment already exists (.venv)
+[*] Activating virtual environment...
+[*] Upgrading pip inside venv...
+Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (25.2)
+[*] Installing Python dependencies from requirements.txt ...
+Requirement already satisfied: scapy in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.6.1)
+Requirement already satisfied: mysql-connector-python in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (9.4.0)
+Requirement already satisfied: pandas in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (2.3.3)
+Requirement already satisfied: reportlab in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (4.4.4)
+Requirement already satisfied: folium in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (0.20.0)
+Requirement already satisfied: pywebview[GTK] in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (6.0)
+Requirement already satisfied: numpy>=1.26.0 in ./.venv/lib/python3.12/site-packages (from pandas->-r requirements.txt (line 3)) (2.3.3)
+Requirement already satisfied: python-dateutil>=2.8.2 in ./.venv/lib/python3.12/site-packages (from pandas->-r requirements.txt (line 3)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in ./.venv/lib/python3.12/site-packages (from pandas->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in ./.venv/lib/python3.12/site-packages (from pandas->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: pillow>=9.0.0 in ./.venv/lib/python3.12/site-packages (from reportlab->-r requirements.txt (line 4)) (11.3.0)
+Requirement already satisfied: charset-normalizer in ./.venv/lib/python3.12/site-packages (from reportlab->-r requirements.txt (line 4)) (3.4.3)
+Requirement already satisfied: proxy_tools in ./.venv/lib/python3.12/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (0.1.0)
+Requirement already satisfied: bottle in ./.venv/lib/python3.12/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (0.13.4)
+Requirement already satisfied: typing_extensions in ./.venv/lib/python3.12/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (4.15.0)
+Requirement already satisfied: PyGObject==3.50.0 in ./.venv/lib/python3.12/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (3.50.0)
+Requirement already satisfied: PyGObject-stubs in ./.venv/lib/python3.12/site-packages (from pywebview[GTK]->-r requirements.txt (line 5)) (2.13.0)
+Requirement already satisfied: pycairo>=1.16 in ./.venv/lib/python3.12/site-packages (from PyGObject==3.50.0->pywebview[GTK]->-r requirements.txt (line 5)) (1.28.0)
+Requirement already satisfied: branca>=0.6.0 in ./.venv/lib/python3.12/site-packages (from folium->-r requirements.txt (line 6)) (0.8.1)
+Requirement already satisfied: jinja2>=2.9 in ./.venv/lib/python3.12/site-packages (from folium->-r requirements.txt (line 6)) (3.1.6)
+Requirement already satisfied: requests in ./.venv/lib/python3.12/site-packages (from folium->-r requirements.txt (line 6)) (2.32.5)
+Requirement already satisfied: xyzservices in ./.venv/lib/python3.12/site-packages (from folium->-r requirements.txt (line 6)) (2025.4.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./.venv/lib/python3.12/site-packages (from jinja2>=2.9->folium->-r requirements.txt (line 6)) (3.0.3)
+Requirement already satisfied: six>=1.5 in ./.venv/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas->-r requirements.txt (line 3)) (1.17.0)
+Requirement already satisfied: idna<4,>=2.5 in ./.venv/lib/python3.12/site-packages (from requests->folium->-r requirements.txt (line 6)) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.venv/lib/python3.12/site-packages (from requests->folium->-r requirements.txt (line 6)) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in ./.venv/lib/python3.12/site-packages (from requests->folium->-r requirements.txt (line 6)) (2025.10.5)
+[+] MySQL client found.
+[+] MySQL service is running.
+[*] Running SQL setup from setup.sql ...
+
+[*] Checking network interfaces...
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: wlo1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DORMANT group default qlen 1000
+    link/ether ac:50:de:70:0e:23 brd ff:ff:ff:ff:ff:ff
+    altname wlp1s0
+3: tailscale0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1280 qdisc fq_codel state UNKNOWN mode DEFAULT group default qlen 500
+    link/none 
+4: vmnet1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:c0:00:01 brd ff:ff:ff:ff:ff:ff
+5: vmnet8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN mode DEFAULT group default qlen 1000
+    link/ether 00:50:56:c0:00:08 brd ff:ff:ff:ff:ff:ff
+
+[*] Checking monitor mode interfaces...
+wlo1      IEEE 802.11  ESSID:"R"  
+
+[*] Active Wi-Fi connections:
+IN-USE  BSSID              SSID                  MODE   CHAN  RATE        SIGNAL  BARS  SECURITY    
+*       0E:F2:6E:B4:4F:F2  R                     Infra  1     130 Mbit/s  89      ▂▄▆█  WPA2        
+        D6:B8:5D:C7:5B:36  Pixel_1425            Infra  11    130 Mbit/s  82      ▂▄▆█  WPA2        
+        9C:1C:12:86:64:D4  UTS-WiFi              Infra  165   195 Mbit/s  82      ▂▄▆█  WPA2 802.1X 
+        9C:1C:12:86:64:D0  UTS-DeviceNetNIVC     Infra  165   195 Mbit/s  82      ▂▄▆█  WPA2        
+        9C:1C:12:86:64:D1  eduroam               Infra  165   195 Mbit/s  82      ▂▄▆█  WPA2 802.1X 
+        9C:1C:12:86:64:D2  UTS-Guest             Infra  165   195 Mbit/s  82      ▂▄▆█  --          
+        9C:1C:12:86:64:D6  UTS-DeviceNet         Infra  165   195 Mbit/s  82      ▂▄▆█  --          
+        9C:1C:12:86:8C:D4  UTS-DeviceNetNIVC     Infra  48    195 Mbit/s  75      ▂▄▆_  WPA2        
+        9C:1C:12:86:8C:D3  UTS-DeviceNet         Infra  48    195 Mbit/s  75      ▂▄▆_  --          
+        9C:1C:12:86:8C:D0  UTS-WiFi              Infra  48    195 Mbit/s  74      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:8C:D1  eduroam               Infra  48    195 Mbit/s  74      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:64:C1  eduroam               Infra  1     195 Mbit/s  72      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:64:C4  UTS-WiFi              Infra  1     195 Mbit/s  72      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:6C:10  UTS-DeviceNetNIVC     Infra  40    195 Mbit/s  70      ▂▄▆_  WPA2        
+        9C:1C:12:86:6C:11  eduroam               Infra  40    195 Mbit/s  70      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:6C:12  UTS-Guest             Infra  40    195 Mbit/s  70      ▂▄▆_  --          
+        9C:1C:12:86:6C:16  UTS-DeviceNet         Infra  40    195 Mbit/s  70      ▂▄▆_  --          
+        9C:1C:12:86:64:C0  UTS-DeviceNetNIVC     Infra  1     195 Mbit/s  69      ▂▄▆_  WPA2        
+        9C:1C:12:86:64:C6  UTS-DeviceNet         Infra  1     195 Mbit/s  69      ▂▄▆_  --          
+        9C:1C:12:86:64:C2  UTS-Guest             Infra  1     195 Mbit/s  69      ▂▄▆_  --          
+        9C:1C:12:86:6C:14  UTS-WiFi              Infra  40    195 Mbit/s  69      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:6C:04  UTS-WiFi              Infra  11    195 Mbit/s  67      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:6C:01  eduroam               Infra  11    195 Mbit/s  67      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:6C:00  UTS-DeviceNetNIVC     Infra  11    195 Mbit/s  65      ▂▄▆_  WPA2        
+        9C:1C:12:86:6C:02  UTS-Guest             Infra  11    195 Mbit/s  65      ▂▄▆_  --          
+        9C:1C:12:86:6C:06  UTS-DeviceNet         Infra  11    195 Mbit/s  65      ▂▄▆_  --          
+        9C:1C:12:86:8C:C1  eduroam               Infra  6     195 Mbit/s  64      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:8C:C0  UTS-WiFi              Infra  6     195 Mbit/s  64      ▂▄▆_  WPA2 802.1X 
+        9C:1C:12:86:8C:C2  UTS-Guest             Infra  6     195 Mbit/s  64      ▂▄▆_  --          
+        9C:1C:12:86:8C:C3  UTS-DeviceNet         Infra  6     195 Mbit/s  64      ▂▄▆_  --          
+        9C:1C:12:86:8C:C4  UTS-DeviceNetNIVC     Infra  6     195 Mbit/s  62      ▂▄▆_  WPA2        
+        3E:94:ED:1F:73:C1  ORBI50                Infra  9     130 Mbit/s  62      ▂▄▆_  WPA2        
+        9C:1C:12:86:62:D0  UTS-DeviceNetNIVC     Infra  64    195 Mbit/s  49      ▂▄__  WPA2        
+        9C:1C:12:86:62:D1  UTS-WiFi              Infra  64    195 Mbit/s  49      ▂▄__  WPA2 802.1X 
+        9C:1C:12:86:62:D6  UTS-DeviceNet         Infra  64    195 Mbit/s  49      ▂▄__  --          
+        32:80:88:E1:D0:81  --                    Infra  9     130 Mbit/s  47      ▂▄__  WPA2        
+        38:94:ED:1F:73:C4  ORBI50                Infra  36    270 Mbit/s  47      ▂▄__  WPA2        
+        9C:1C:12:86:62:D2  eduroam               Infra  64    195 Mbit/s  47      ▂▄__  WPA2 802.1X 
+        9C:1C:12:86:62:D3  UTS-Guest             Infra  64    195 Mbit/s  47      ▂▄__  --          
+        E8:9C:25:1A:3D:48  ultimo                Infra  5     270 Mbit/s  45      ▂▄__  WPA2        
+        38:94:ED:1F:73:C3  --                    Infra  157   270 Mbit/s  45      ▂▄__  WPA2        
+        08:36:C9:2A:8C:CF  ORBI50                Infra  36    270 Mbit/s  42      ▂▄__  WPA2        
+        08:27:A8:6C:16:49  WIFI-97QV5DF          Infra  7     540 Mbit/s  39      ▂▄__  WPA2 WPA3   
+        12:36:C9:2A:8C:CC  --                    Infra  9     130 Mbit/s  39      ▂▄__  WPA2        
+        B6:6E:84:11:C2:19  --                    Infra  3     270 Mbit/s  35      ▂▄__  WPA2        
+        C0:25:E9:FA:5B:64  WiFi-5B64             Infra  4     130 Mbit/s  32      ▂▄__  WPA2        
+        C0:25:E9:FA:5B:66  WiFi-5B64-5G          Infra  149   405 Mbit/s  32      ▂▄__  WPA2        
+        9C:1C:12:8F:B9:50  UTS-DeviceNetNIVC     Infra  36    195 Mbit/s  29      ▂___  WPA2        
+        9C:1C:12:8F:B9:52  UTS-Guest             Infra  36    195 Mbit/s  29      ▂___  --          
+        D8:33:B7:0F:34:A7  WiFi-F9R1N            Infra  112   540 Mbit/s  29      ▂___  WPA2 WPA3   
+        9C:1C:12:8F:B9:42  UTS-Guest             Infra  1     195 Mbit/s  27      ▂___  --          
+        F8:CA:59:B6:54:CC  Vodafone-654CA        Infra  11    130 Mbit/s  27      ▂___  WPA2        
+        8C:DE:F9:EE:B5:FA  Redmi_16C3_5G         Infra  36    270 Mbit/s  27      ▂___  WPA2        
+        9C:1C:12:8F:B9:51  eduroam               Infra  36    195 Mbit/s  27      ▂___  WPA2 802.1X 
+        9C:1C:12:8F:B9:56  UTS-DeviceNet         Infra  36    195 Mbit/s  27      ▂___  --          
+        9C:1C:12:86:7F:F0  UTS-DeviceNetNIVC     Infra  44    195 Mbit/s  27      ▂___  WPA2        
+        9C:1C:12:86:7F:F1  UTS-WiFi              Infra  44    195 Mbit/s  27      ▂___  WPA2 802.1X 
+        9C:1C:12:86:7F:F3  UTS-Guest             Infra  44    195 Mbit/s  27      ▂___  --          
+        9C:1C:12:86:7F:F6  UTS-DeviceNet         Infra  44    195 Mbit/s  27      ▂___  --          
+        9C:1C:12:86:71:56  UTS-DeviceNet         Infra  140   195 Mbit/s  27      ▂___  --          
+        9C:1C:12:86:55:D1  eduroam               Infra  149   195 Mbit/s  27      ▂___  WPA2 802.1X 
+        9C:1C:12:86:55:D4  UTS-WiFi              Infra  149   195 Mbit/s  27      ▂___  WPA2 802.1X 
+        28:80:88:E1:D0:83  --                    Infra  157   270 Mbit/s  27      ▂___  WPA2        
+        9C:1C:12:8F:B9:40  UTS-DeviceNetNIVC     Infra  1     195 Mbit/s  25      ▂___  WPA2        
+        9C:1C:12:8F:B9:54  UTS-WiFi              Infra  36    195 Mbit/s  25      ▂___  WPA2 802.1X 
+        9C:1C:12:86:71:50  UTS-DeviceNetNIVC     Infra  140   195 Mbit/s  25      ▂___  WPA2        
+        9C:1C:12:86:71:51  eduroam               Infra  140   195 Mbit/s  25      ▂___  WPA2 802.1X 
+        9C:1C:12:86:71:52  UTS-Guest             Infra  140   195 Mbit/s  25      ▂___  --          
+        9C:1C:12:86:55:D0  UTS-DeviceNetNIVC     Infra  149   195 Mbit/s  25      ▂___  WPA2        
+        9C:1C:12:86:55:D2  UTS-Guest             Infra  149   195 Mbit/s  25      ▂___  --          
+        9C:1C:12:86:55:D6  UTS-DeviceNet         Infra  149   195 Mbit/s  25      ▂___  --          
+        9C:1C:12:8F:B9:46  UTS-DeviceNet         Infra  1     195 Mbit/s  24      ▂___  --          
+        9C:1C:12:86:83:D0  UTS-DeviceNetNIVC     Infra  56    195 Mbit/s  24      ▂___  WPA2        
+        9C:1C:12:86:83:D6  UTS-DeviceNet         Infra  56    195 Mbit/s  24      ▂___  --          
+        9C:1C:12:86:71:54  UTS-WiFi              Infra  140   195 Mbit/s  24      ▂___  WPA2 802.1X 
+        BC:30:D9:F5:36:49  TelstraF53648         Infra  149   540 Mbit/s  24      ▂___  WPA2        
+        9C:1C:12:86:74:16  UTS-DeviceNet         Infra  153   195 Mbit/s  24      ▂___  --          
+        9C:1C:12:86:83:D1  eduroam               Infra  56    195 Mbit/s  22      ▂___  WPA2 802.1X 
+        9C:1C:12:86:83:D4  UTS-WiFi              Infra  56    195 Mbit/s  22      ▂___  WPA2 802.1X 
+        9C:1C:12:86:83:D2  UTS-Guest             Infra  56    195 Mbit/s  22      ▂___  --          
+        9C:1C:12:86:78:36  UTS-DeviceNet         Infra  100   195 Mbit/s  22      ▂___  --          
+        9C:1C:12:86:74:11  eduroam               Infra  153   195 Mbit/s  22      ▂___  WPA2 802.1X 
+        3E:87:BA:A5:DD:6E  WiFi-A5DD6B           Infra  157   540 Mbit/s  22      ▂___  WPA2        
+        94:10:3E:87:DA:19  TechLab-Acoustics     Infra  7     130 Mbit/s  20      ▂___  WPA2        
+        9C:1C:12:86:78:30  UTS-DeviceNetNIVC     Infra  100   195 Mbit/s  20      ▂___  WPA2        
+        9C:1C:12:86:78:31  eduroam               Infra  100   195 Mbit/s  20      ▂___  WPA2 802.1X 
+        9C:1C:12:86:78:34  UTS-WiFi              Infra  100   195 Mbit/s  20      ▂___  WPA2 802.1X 
+        9C:1C:12:86:78:32  UTS-Guest             Infra  100   195 Mbit/s  20      ▂___  --          
+        9C:1C:12:86:74:10  UTS-DeviceNetNIVC     Infra  153   195 Mbit/s  20      ▂___  WPA2        
+        6C:FF:CE:37:00:47  WiFi-3946Q            Infra  0     540 Mbit/s  19      ▂___  WPA2 WPA3   
+        9C:1C:12:86:80:72  UTS-Guest             Infra  52    195 Mbit/s  17      ▂___  --          
+        9C:1C:12:86:80:76  UTS-DeviceNet         Infra  52    195 Mbit/s  17      ▂___  --          
+        9C:1C:12:86:7D:92  UTS-Guest             Infra  140   195 Mbit/s  17      ▂___  --          
+        34:E8:94:7B:26:16  WiFi-2614-5G          Infra  149   405 Mbit/s  17      ▂___  WPA2        
+        08:27:A8:A9:BE:CB  WIFI-EZDK5PF          Infra  153   540 Mbit/s  17      ▂___  WPA2 WPA3   
+        0A:27:A8:A9:BE:CB  --                    Infra  153   540 Mbit/s  17      ▂___  WPA2 WPA3   
+        78:98:E8:02:36:63  WiFi-B013             Infra  36    270 Mbit/s  15      ▂___  WPA1 WPA2   
+        34:98:B5:AE:13:B2  HAI Office 5G         Infra  44    270 Mbit/s  15      ▂___  WPA2        
+        9C:1C:12:86:71:34  UTS-WiFi              Infra  104   195 Mbit/s  15      ▂___  WPA2 802.1X 
+        96:A2:F4:50:44:1F  ball                  Infra  157   540 Mbit/s  15      ▂___  WPA1 WPA2   
+        B6:42:A1:C3:CA:2D  Deco_CA28             Infra  44    270 Mbit/s  14      ▂___  WPA2        
+        9C:1C:12:86:80:71  eduroam               Infra  52    195 Mbit/s  14      ▂___  WPA2 802.1X 
+        9C:1C:12:86:80:74  UTS-WiFi              Infra  52    195 Mbit/s  14      ▂___  WPA2 802.1X 
+        9C:1C:12:86:5D:D4  UTS-DeviceNetNIVC     Infra  56    195 Mbit/s  14      ▂___  WPA2        
+        9C:1C:12:86:71:31  eduroam               Infra  104   195 Mbit/s  14      ▂___  WPA2 802.1X 
+        9C:1C:12:8F:C3:30  UTS-DeviceNetNIVC     Infra  104   195 Mbit/s  14      ▂___  WPA2        
+        9C:1C:12:86:71:32  UTS-Guest             Infra  104   195 Mbit/s  14      ▂___  --          
+        9C:1C:12:86:71:36  UTS-DeviceNet         Infra  104   195 Mbit/s  14      ▂___  --          
+        9C:1C:12:8F:C3:36  UTS-DeviceNet         Infra  104   195 Mbit/s  14      ▂___  --          
+        CA:06:C3:99:08:5E  WiFi-990858_5G_Guest  Infra  157   540 Mbit/s  14      ▂___  WPA2        
+        96:A2:F4:50:44:1C  --                    Infra  157   540 Mbit/s  14      ▂___  WPA2        
+        78:98:E8:02:36:5B  WiFi-B013             Infra  36    270 Mbit/s  12      ▂___  WPA1 WPA2   
+        9C:1C:12:86:5B:F1  eduroam               Infra  44    195 Mbit/s  12      ▂___  WPA2 802.1X 
+        9C:1C:12:86:5B:F6  UTS-DeviceNet         Infra  44    195 Mbit/s  12      ▂___  --          
+        9C:1C:12:86:80:70  UTS-DeviceNetNIVC     Infra  52    195 Mbit/s  12      ▂___  WPA2        
+        2C:70:4F:58:54:C6  Wi-Fi 5854C5 5G       Infra  56    270 Mbit/s  12      ▂___  WPA2        
+        9C:1C:12:86:71:30  UTS-DeviceNetNIVC     Infra  104   195 Mbit/s  12      ▂___  WPA2        
+        9C:1C:12:8F:C3:32  UTS-Guest             Infra  104   195 Mbit/s  12      ▂___  --          
+        9C:1C:12:86:5B:F0  UTS-DeviceNetNIVC     Infra  44    195 Mbit/s  10      ▂___  WPA2        
+        9C:1C:12:8F:C3:31  eduroam               Infra  104   195 Mbit/s  10      ▂___  WPA2 802.1X 
+        FA:8F:CA:68:5C:E9  --                    Infra  149   65 Mbit/s   10      ▂___  --          
+        9C:1C:12:86:99:B1  eduroam               Infra  108   195 Mbit/s  9       ▂___  WPA2 802.1X 
+
+===== Initialization completed at Mon 06 Oct 2025 16:29:18 AEDT =====
+
+
+[*] Running Python script: ./app/app.py
