@@ -104,8 +104,8 @@ log "\n===== Initialization completed at $(date) =====\n"
 
 # --- Run the Python script ---
 if [ -f "$PYTHON_SCRIPT" ]; then
-    log "\n[*] Starting Reports Hotspot Webserver UI: /etc/Main_Project_Repo/web/Integrated-Web-UI-main/web/app.py in background..."
-    sudo $VENV_DIR/bin/python3 /etc/Main_Project_Repo/web/Integrated-Web-UI-main/web/app.py & 
+    log "\n[*] Starting Reports Hotspot Webserver UI: /etc/Main_Project_Repo/web/Integrated-Web-UI-main/webUI/app.py in background..."
+    sudo $VENV_DIR/bin/python3 /etc/Main_Project_Repo/webUI/Integrated-Web-UI-main/web/app.py & 
     WEB_PID=$!
     log "[+] On screen Web UI started successfully (PID: $WEB_PID)"
     sudo $VENV_DIR/bin/python3 /etc/Main_Project_Repo/scan/scan.py -i $INTERFACE & 
