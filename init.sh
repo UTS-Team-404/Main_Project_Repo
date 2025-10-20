@@ -14,18 +14,20 @@
 # ========================================
 
 VENV_DIR="/etc/.venv"
-LOGFILE="/etc/initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
+LOGFILEPATH="/etc/initLogs/"
+LOGFILE="$(date +'%Y-%m-%d_%H:%M:%S').log"
 PYTHON_SCRIPT="/etc/Main_Project_Repo/app/app.py"       # <-- change this to your script
 WEBPYTHON_SCRIPT= "/etc/Main_Project_Repo/webUI/Integrated-Web-UI-main/web/app.py"
 SQL_FILE="/etc/Main_Project_Repo/setup.sql"          # <-- change this to your SQL setup file
 INTERFACE="wlan1"
 
 # Create or clear log
-sudo : > "$LOGFILE"
+sudo mkdir $LOGFILEPATH
+sudo touch "$LOGFILEPATH/$LOGFILE"
 
 # Function to log both to file and stdout
 log() {
-    sudo echo -e "$@" | tee -a "$LOGFILE"
+    sudo echo -e "$@" | sudo tee -a "$LOGFILE"
 }
 
 # Timestamp
