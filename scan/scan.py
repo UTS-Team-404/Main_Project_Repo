@@ -1,4 +1,4 @@
-#!../.venv/bin/python3
+#!/etc/.venv/python3
 
 
 import argparse
