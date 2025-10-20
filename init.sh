@@ -14,19 +14,18 @@
 # ========================================
 
 VENV_DIR="/etc/.venv"
-LOGFILE="./initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
-PYTHON_SCRIPT="./app/app.py"       # <-- change this to your script
-WEBPYTHON_SCRIPT= "./web/Integrated-Web-UI-main/web/app.py"
-SQL_FILE="setup.sql"          # <-- change this to your SQL setup file
+LOGFILE="/etc/initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
+PYTHON_SCRIPT="/etc/Main_Project_Repo/app/app.py"       # <-- change this to your script
+WEBPYTHON_SCRIPT= "/etc/Main_Project_Repo/web/Integrated-Web-UI-main/web/app.py"
+SQL_FILE="/etc/Main_Project_Repo/setup.sql"          # <-- change this to your SQL setup file
 INTERFACE="wlan1"
-
 
 # Create or clear log
 : > "$LOGFILE"
 
 # Function to log both to file and stdout
 log() {
-    echo -e "$@" | tee -a "$LOGFILE"
+    sudo echo -e "$@" | tee -a "$LOGFILE"
 }
 
 # Timestamp
@@ -103,11 +102,11 @@ log "\n===== Initialization completed at $(date) =====\n"
 
 # --- Run the Python script ---
 if [ -f "$PYTHON_SCRIPT" ]; then
-    log "\n[*] Starting web UI: $PYTHON_SCRIPT in background..."
-    sudo $VENV_DIR/bin/python3 web/Integrated-Web-UI-main/web/app.py & 
+    log "\n[*] Starting Reports Hotspot Webserver UI: /etc/Main_Project_Repo/web/Integrated-Web-UI-main/web/app.py in background..."
+    sudo $VENV_DIR/bin/python3 /etc/Main_Project_Repo/web/Integrated-Web-UI-main/web/app.py & 
     WEB_PID=$!
-    log "[+] Web UI started successfully (PID: $WEB_PID)"
-    sudo $VENV_DIR/bin/python3 scan/scan.py -i $INTERFACE & 
+    log "[+] On screen Web UI started successfully (PID: $WEB_PID)"
+    sudo $VENV_DIR/bin/python3 /etc/Main_Project_Repo/scan/scan.py -i $INTERFACE & 
     SCAN_PID=$!
     log "[+] Scanner started successfully (PID: $SCAN_PID)"
     log "\n[*] Running Python script: $PYTHON_SCRIPT"
