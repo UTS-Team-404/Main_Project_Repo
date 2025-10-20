@@ -1,0 +1,6 @@
+reportlab==3.6.13
+pandas==2.2.2
+flask==3.0.3
+mysql-connector-python==9.0.0
+pillow
+matplotlib==3.8.4
