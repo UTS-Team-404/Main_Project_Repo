@@ -7,7 +7,6 @@ folium
 numpy
 flask
 matplotlib
-gps
 python-gps
 pywebview
 qtpy
