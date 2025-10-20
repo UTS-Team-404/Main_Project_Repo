@@ -16,7 +16,7 @@
 VENV_DIR="/etc/.venv"
 LOGFILE="/etc/initLogs/$(date +'%Y-%m-%d_%H:%M:%S').log"
 PYTHON_SCRIPT="/etc/Main_Project_Repo/app/app.py"       # <-- change this to your script
-WEBPYTHON_SCRIPT= "/etc/Main_Project_Repo/web/Integrated-Web-UI-main/web/app.py"
+WEBPYTHON_SCRIPT= "/etc/Main_Project_Repo/webUI/Integrated-Web-UI-main/web/app.py"
 SQL_FILE="/etc/Main_Project_Repo/setup.sql"          # <-- change this to your SQL setup file
 INTERFACE="wlan1"
 
