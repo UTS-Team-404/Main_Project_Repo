@@ -157,7 +157,7 @@ class HeatmapApp:
 
         # Start the PyWebView window
         html_path = os.path.join(os.path.dirname(__file__), 'index.html')
-        webview.create_window('Heatmap Application', f"file://{html_path}", js_api=self)
+        webview.create_window('Heatmap Application', f"file://{html_path}", js_api=self, fullscreen=True)
         webview.start(debug=True)
 
     def generate_new_heatmap(self):
