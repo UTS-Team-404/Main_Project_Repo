@@ -1,3 +1,5 @@
+#/etc/.venv/bin/python3
+
 #pip install folium
 #pip install pywebview[GTK]
 
