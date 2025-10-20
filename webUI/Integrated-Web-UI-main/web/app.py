@@ -1,4 +1,4 @@
-#/etc/.venv/bin/python3 
+#!/etc/.venv/bin/python3 
 
 # Integrated-Web-UI-main/web/app.py
 from pathlib import Path
