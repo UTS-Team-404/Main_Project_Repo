@@ -21,7 +21,7 @@ SQL_FILE="/etc/Main_Project_Repo/setup.sql"          # <-- change this to your S
 INTERFACE="wlan1"
 
 # Create or clear log
-: > "$LOGFILE"
+sudo : > "$LOGFILE"
 
 # Function to log both to file and stdout
 log() {
